@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>showgrades</title>
+</head>
+<body>
+<form>
+{% for post in posts %}
+<tr>
+<td>{{post.id}}</td>
+<td>{{post.name}}</td>
+<td>{{post.subject}}</td>
+<td>{{post.grade}}</td>
+</tr>
+{% endfor %}
+</form>
+</body>
+
+</html>
