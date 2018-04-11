@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>登录系统</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">    
+    <script type="text/javascript">
+        function regist() {
+            window.location.href = 'regist.html';
+        }
+    </script>
+    </head>
+<body>
+<h1>欢迎进入教务处系统</h1>
+<h2>请登录用户信息</h2>
+<form action="/login" methods="POST" name="登录">
+<!--form action="/flasker" method="GET" name="注册"-->   
+    <input name="username" placeholder="请输入账号">
+    <br></br>
+    <input type="password" name="password" placeholder="请输入密码">
+    <input type="submit"  value="登录">
+    <a href="/regist">zhuce</a>
+</form>
+</body>
+</html>
+
+
