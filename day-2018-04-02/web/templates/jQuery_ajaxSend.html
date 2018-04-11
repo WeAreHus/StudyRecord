@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+<script src="jquery-3.3.1.min.js"></script>
+<script >
+$(document).ready(function(){
+  $("div").ajaxSend(function(e,xhr,opt){
+    $(this).html("正在请求：" + opt.url);
+  });
+  $("button").click(function(){
+    $("div").load("123.txt");
+  });
+});
+</script>
+</head>
+
+<body>
+
+<div id="txt"><h2>通过 AJAX 改变文本</h2></div>
+<button>改变内容</button>
+
+</body>
+</html>
