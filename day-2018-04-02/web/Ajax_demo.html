@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        //建立函数loadXMLDoc
+        function loadXMLDoc()
+        {
+            //创建xmlhttp对象
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                //创建适用于新版本浏览器的XMLHttpRequest对象
+                xmlhttp = new XMLHttpRequest();
+            }
+            else
+            {
+                //创建适用于旧版本浏览器的XNMLHttpRequest对象
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            //当readyState改变时，就会触发onreadystatechange事件，当服务器响应已做好被处理的准备时所执行的任务
+            xmlhttp.onreadystatechange=function()
+            {
+                //当 readyState 等于 4 且状态为 200 时，表示响应已就绪
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    //xmlhttp.responseText返回一个html串，把它放到myDiv中显示
+                    document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+                }
+                }
+                //open() 方法的 url 参数是服务器上文件的地址
+                xmlhttp.open("GET", 'templates/login.html', true);
+            //JQuery的AJAX
+                xmlhttp.send();
+            }
+    </script>
+
+    <title>ajax</title>
+</head>
+<body>
+<h1>在不不重新加载页面的情况下，进行静态刷新，向服务器发送请求</h1>
+<div id="myDiv"><h2>使用AJAX刷新该文本内容</h2></div>
+<!--通过button按钮来触发loadXMLDoc函数，从而执行AJAX功能-->
+<button type="button" onclick="loadXMLDoc()">刷新内容</button>
+</body>
+</html>

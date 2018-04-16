@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>成绩查询</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+<form>
+{% for post in posts %}
+<tr>
+<h3>学号：
+<td>{{post.id}}</td>
+<br>
+</h3>
+<h3>姓名：
+<td>{{post.name}}</td>
+<br>
+</h3>
+<a href = "/changepasswd" target="_blank">更改密码</a><br>
+数学：<td>{{post.math}}&nbsp;&nbsp;</td>
+语文：<td>{{post.Chinese}}&nbsp;&nbsp;</td>
+英语：<td>{{post.English}}&nbsp;&nbsp;</td>
+物理：<td>{{post.physical}}&nbsp;&nbsp;</td>
+化学：<td>{{post.chemistry}}&nbsp;&nbsp;</td>
+生物：<td>{{post.biological}}&nbsp;&nbsp;</td>
+历史：<td>{{post.history}}&nbsp;&nbsp;</td>
+地理：<td>{{post.geography}}&nbsp;&nbsp;</td>
+政治：<td>{{post.political}}&nbsp;&nbsp;</td>
+</tr>
+{% endfor %}
+</form>
+    </body>
+</html>
