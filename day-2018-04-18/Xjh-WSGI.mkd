@@ -1,0 +1,123 @@
+# WSGI  
+&nbsp; 全称为``Web Server Gateway Interface``，即 Web服务器网关接口。是一种标准接口规范，规定了 web 服务器 和 Python web 应用/框架 之间如何传递数据，以便 web 应用 可以与多种 web 服务器配合工作。
+----
+### Web 服务器  
+当我们在浏览器输入URL后，浏览器会先请求DNS服务器，获得请求站点的 IP 地址。然后发送一个HTTP Request（请求）给拥有该 IP 的主机，接着就会接收到服务器给我们的 HTTP Response（响应），浏览器经过渲染后，以一种较好的效果呈现给我们。这个过程中，正是Web服务器在幕后默默做贡献。  
+> 简单来说，Web服务器是在运行在物理服务器上的一个程序，它永久地等待客户端（主要是浏览器，比如Chrome，Firefox等）发送请求。当收到请求之后，它会生成相应的响应并将其返回至客户端。Web服务器通过HTTP协议与客户端通信，因此也被称为HTTP服务器。  
+[png](https://wx3.sinaimg.cn/mw1024/0071Dyx4gy1fqln0dke43j30qn0dyju5.jpg)
+----
+### Web 应用程序
+Web 服务器接受 Http Request，返回 Response，很多时候 Response 并不是静态文件，因此需要有一个应用程序根据 Request 生成相应的 Response。这里的应用程序主要用来处理相关业务逻辑，读取或者更新数据库，根据不同 Request 返回相应的 Response。注意这里并不是 Web 服务器本身来做这件事，它只负责 Http 协议层面和一些诸如并发处理，安全，日志等相关的事情。
+
+应用程序可以用各种语言编写（Java, PHP, Python, Ruby等），这个应用程序会从Web服务器接收客户端的请求，处理完成后，再返回响应给Web服务器，最后由Web服务器返回给客户端。整个架构如下  
+[png](http://xuelangzf-github.qiniudn.com/20160728_forum_design_framework_4.png)
+----
+### Web 服务器网关接口
+我们知道Python有着许多的 Web 框架，而同时又有着许多的 Web 服务器（Apache, Nginx, Gunicorn等），框架和Web服务器之间需要进行通信，如果在设计时它们之间不可以相互匹配的，那么选择了一个框架就会限制对 Web 服务器的选择，这显然是不合理的。
+
+那么，怎样确保可以在不修改Web服务器代码或网络框架代码的前提下，使用自己选择的服务器，并且匹配多个不同的网络框架呢？答案是接口，设计一套双方都遵守的接口就可以了。对python来说，就是``WSGI（Web Server Gateway Interface``，Web服务器网关接口）。其他编程语言也拥有类似的接口：例如Java的Servlet API和Ruby的Rack。
+
+Python WSGI的出现，让开发者可以将 Web 框架与 Web 服务器的选择分隔开来，不再相互限制。现在，你可以真正地将不同的 Web 服务器与Web框架进行混合搭配，选择满足自己需求的组合。  
+>例如，可以使用 Gunicorn 或Nginx/uWSGI来运行Django、Flask或web.py应用。  
+**HTTP 客户端 --- web 服务器 --- WSGI --- Flask**  
+[png](https://wx3.sinaimg.cn/mw1024/0071Dyx4gy1fqlmptrqv5j30ql0kq45i.jpg)
+
+### WSGI作用：
+
+* web 服务器知道如何调用 web 应用，传递用户的请求给应用
+*  让应用知道用户的请求内容，以及如何返回消息给 web 服务器
+
+### WSGI的两种角色
+
+* ``server/gateway``, 通常是 web 服务器，接受客户的请求，调用 ``application``，将 ``application`` 处理的结果封装成 HTTP 响应返回给客户。
+
+* ``application/framework``, 是 Python 应用
+
+* ``application ``是一个需要两个参数的可调用对象，可以是一个函数、方法，或一个有__call__方法的实例。
+
+### WSGI角色的实现
+
+* ``application`` 端 : 由 Python 框架实现，会提供接口让开发者能够获取到请求内容，并帮助进行响应返回
+
+* ``server ``端 : 一般 web 服务器 不内置对 WSGI 的支持，需要通过扩展来完成，比如 Apache 的`` mod_wsgi ``扩展模块、``Nginx ``的`` uWSGI``。扩展可以实现 WSGI 的服务端、进程管理、对 application 的调用  
+
+### 为了支持WSGI，服务器需要做什么？
+
+一个``WSGI``服务器需要实现两个函数:  
+1. 解析从服务器传过来的http请求，为应用程序提供``environ``字典
+
+```
+def get_environ(self):
+      env = {}
+      env['wsgi.version']      = (1, 0)
+      env['wsgi.url_scheme']   = 'http'
+      env['wsgi.input']        = StringIO.StringIO(self.request_data)
+      env['wsgi.errors']       = sys.stderr
+      env['wsgi.multithread']  = False
+      env['wsgi.multiprocess'] = False
+      env['wsgi.run_once']     = False
+      env['REQUEST_METHOD']    = self.request_method    # GET
+      env['PATH_INFO']         = self.path              # /hello
+      env['SERVER_NAME']       = self.server_name       # localhost
+      env['SERVER_PORT']       = str(self.server_port)  # 8888
+      return env
+```  
+2. 实现start response函数  
+```
+def start_response(self, status, response_headers, exc_info=None):
+      # Add necessary server headers
+      server_headers = [
+          ('Date', 'Tue, 31 Mar 2015 12:54:48 GMT'),
+          ('Server', 'WSGIServer 0.2'),
+      ]
+      self.headers_set = [status, response_headers + server_headers]
+      # To adhere to WSGI specification the start_response must return
+      # a 'write' callable. We simplicity's sake we'll ignore that detail
+      # for now.
+```
+数据流程图  
+[png](https://wx2.sinaimg.cn/mw690/0071Dyx4gy1fqmi9e1quij30k00ejaab.jpg)
+### WSGI服务器调用Python应用程序
+1.从客户端获取到请求  
+2.通过``get_env``获得``envir``变量  
+3.调用应用程序，传入``env``和``start_response``函数,并获得响应  
+4.将响应返回给客户端  
+```
+def handle_one_request(self):
+      self.request_data = request_data = self.client_connection.recv(1024)
+      print(''.join(
+          '< {line}\n'.format(line=line)
+          for line in request_data.splitlines()
+      ))
+      self.parse_request(request_data)
+      env = self.get_environ() #获取environ
+      result = self.application(env, self.start_response)#调用应用程序
+      self.finish_response(result)
+```
+
+### Python 应用程序需要做什么？
+主要工作就是根据输入的``environ``字典信息生成相应的http报文返回给服务器。
+### 演示demo
+```
+def hello_world_app(environ, start_response):
+    status = '200 OK'
+    headers = [('Content-type', 'text/plain')]
+    start_response(status, headers)
+    return ["hello world"]
+
+
+def main():
+    from wsgiref.simple_server import make_server
+    httpd = make_server('', 8000, hello_world_app)
+    print "Serving on port 8000"
+   
+    httpd.serve_forever()
+
+if __name__ == '__main__':
+    main()
+```
+
+
+
+
+
