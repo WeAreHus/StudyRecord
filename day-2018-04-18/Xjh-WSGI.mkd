@@ -1,4 +1,4 @@
-# WSGI  
+# WSGI    
 &nbsp; 全称为``Web Server Gateway Interface``，即 Web服务器网关接口。是一种标准接口规范，规定了 web 服务器 和 Python web 应用/框架 之间如何传递数据，以便 web 应用 可以与多种 web 服务器配合工作。
 ----
 ### Web 服务器  
@@ -8,8 +8,7 @@
 ----
 ### Web 应用程序
 Web 服务器接受 Http Request，返回 Response，很多时候 Response 并不是静态文件，因此需要有一个应用程序根据 Request 生成相应的 Response。这里的应用程序主要用来处理相关业务逻辑，读取或者更新数据库，根据不同 Request 返回相应的 Response。注意这里并不是 Web 服务器本身来做这件事，它只负责 Http 协议层面和一些诸如并发处理，安全，日志等相关的事情。
-
-应用程序可以用各种语言编写（Java, PHP, Python, Ruby等），这个应用程序会从Web服务器接收客户端的请求，处理完成后，再返回响应给Web服务器，最后由Web服务器返回给客户端。整个架构如下  
+> 应用程序可以用各种语言编写（Java, PHP, Python, Ruby等），这个应用程序会从Web服务器接收客户端的请求，处理完成后，再返回响应给Web服务器，最后由Web服务器返回给客户端。整个架构如下  
 [png](http://xuelangzf-github.qiniudn.com/20160728_forum_design_framework_4.png)
 ----
 ### Web 服务器网关接口
