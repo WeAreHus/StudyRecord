@@ -1,4 +1,4 @@
-# WSGI  
+# WSGI    
 &nbsp; 全称为``Web Server Gateway Interface``，即 Web服务器网关接口。是一种标准接口规范，规定了 web 服务器 和 Python web 应用/框架 之间如何传递数据，以便 web 应用 可以与多种 web 服务器配合工作。
 ----
 ### Web 服务器  
