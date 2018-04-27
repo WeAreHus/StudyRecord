@@ -21,12 +21,12 @@ def request():
 @app.route('/login',methods=['GET','POST'])
 def getLoginRequest():
     #pdb.set_trace()
-    db = MySQLdb.connect(host="localhost",user="cris",passwd="123456",db="Students",charset="utf8")
+    db = MySQLdb.connect(host="localhost",user="root",passwd="xx1997",db="grades",charset="utf8")
     #youbiao
 
     cur=db.cursor()
     pdb.set_trace()
-    sql = "select * from class where username="+"'" +request.args.get('username')+  "'"+" and password="+"'" +request.args.get('password')+"'"+""
+    sql = "select * from class where name = "+"'"+request.args.get('username')+ "'"+" and password="+"'" +request.args.get('password')+"'"+""
     try:
         # 执行sql语句
         cur.execute(sql)
@@ -52,7 +52,7 @@ def getLoginRequest():
 def  getRigistRequest():
     #pdb.set_trace()
     #连接数据库,此前在数据库中创建数据库TESTDB
-    db = MySQLdb.connect(host="localhost",user="cris",passwd="123456",db="Students",charset="utf8")
+    db = MySQLdb.connect(host="localhost",user="root",passwd="xx1997",db="grades",charset="utf8")
     # 使用cursor()方法获取操作游标
     cur = db.cursor() 
     # SQL 插入语句
@@ -81,7 +81,7 @@ def get_table_data(name):
     db = MySQLdb.connect(host="localhost",user="cris",passwd="123456",db="Students",charset='utf8')
     cur=db.cursor()
   
-    res=cur.execute("select * fron student where name = '" + name + "'")
+    res=cur.execute("select * from student where name = '" + name + "'")
     res=cur.fetchmany(res)
     cur.close()
     db.commit()
