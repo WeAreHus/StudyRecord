@@ -1,73 +1,72 @@
-# -*- encoding: utf-8 -*-
-from flask import Flask, render_template, request
+# -*- coding: UTF-8 -*-
 import MySQLdb
-import traceback
-import pdb
+from flask import Flask
+from flask import render_template
+from flask import request   
+import traceback  
 
-app = Flask(__name__)  # 创建一个wsgi应用
-app.config.from_object(__name__)
-#app.config.from_envvar('FLASK_SETTING',silent=True)
+app = Flask(__name__)
 
+#默认路径访问登录页面
+@app.route('/')
+def login():
+    return render_template('login.html')
 
-@app.route('/', methods=['GET','POST'])
-def index():
-    return render_template("login.html")
+#默认路径访问注册页面
+@app.route('/regist')
+def regist():
+    return render_template('regist.html')
 
-@app.route('/regist',methods=['GET'])
-def request():
-    return render_template("regist.html")
+@app.route('/grade')
+def getGrades():
+    return render_template("grade.html")
 
-
-@app.route('/login',methods=['GET','POST'])
+#获取登录参数及处理
+@app.route('/login')
 def getLoginRequest():
-    #pdb.set_trace()
-    db = MySQLdb.connect(host="localhost",user="cris",passwd="123456",db="Students",charset="utf8")
-    #youbiao
-
-    cur=db.cursor()
-    pdb.set_trace()
-    sql = "select * from class where username="+"'" +request.args.get('username')+  "'"+" and password="+"'" +request.args.get('password')+"'"+""
+    db =MySQLdb.connect(
+        host='localhost', port=3306,
+        user='man_user', passwd='674099',
+        db='snailblog', charset='utf8',
+    )
+    cursor = db.cursor()
+    sql = ("select * from class where username=" + "'" + request.args.get('username') + "'" +
+            " and password=" + "'" + request.args.get('password') + "'" + "")
     try:
-        # 执行sql语句
-        cur.execute(sql)
-        db.commit()
-        results = cur.fetchall()
-        print(len(results))
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        print(len(results)) 
         if len(results)==1:
-            return 'index.html'
+            return render_template('index.html')
         else:
             return '用户名或密码不正确'
-        # 提交到数据库执行
         db.commit()
     except:
-        # 如果发生错误则回滚
         traceback.print_exc()
         db.rollback()
-    # 关闭数据库连接
     db.close()
 
-
-
-@app.route('/register',methods=['GET'])
-def  getRigistRequest():
-    #pdb.set_trace()
-    #连接数据库,此前在数据库中创建数据库TESTDB
-    db = MySQLdb.connect(host="localhost",user="cris",passwd="123456",db="Students",charset="utf8")
-    # 使用cursor()方法获取操作游标
-    cur = db.cursor() 
-    # SQL 插入语句
-    sql = "INSERT INTO class (username,password) VALUES ('"+request.args.get('username')+"'"+", "+request.args.get('password')+")"
+#获取注册请求及处理
+@app.route('/register')
+def getRigistRequest():
+    db =MySQLdb.connect(
+        host='localhost', port=3306,
+        user='man_user', passwd='674099',
+        db='snailblog', charset='utf8',
+    ) 
+    cursor = db.cursor()
+    sql = ( "INSERT INTO class (username,password) VALUES ('" +
+            request.args.get('username') + "'" +
+            ", " + request.args.get('password') + ")" )
     try:
-        cur.execute(sql)
+        cursor.execute(sql)
         db.commit()
-        return render_template("login.html")
+        return render_template('login.html') 
     except:
         traceback.print_exc()
         db.rollback()
         return '注册失败'
-    cursor.close()
-    conn.close()
-
+    db.close()
     	
 """@app.route('/login',methods=['POST'])
 def suc(): 
@@ -78,10 +77,13 @@ def suc():
         return ERROR"""
 
 def get_table_data(name):
-    db = MySQLdb.connect(host="localhost",user="cris",passwd="123456",db="Students",charset='utf8')
+    db =MySQLdb.connect(
+        host='127.0.0.1', port=3306,
+        user='man_user', passwd='674099',
+        db='snailblog', charset='utf8',
+    )
     cur=db.cursor()
-  
-    res=cur.execute("select * fron student where name = '" + name + "'")
+    res=cur.execute("select * from students where name = '" + name + "'")
     res=cur.fetchmany(res)
     cur.close()
     db.commit()
@@ -90,8 +92,12 @@ def get_table_data(name):
 
 @app.route('/cjcx',methods=['GET'])
 def chaxun():
-    name = request.args.get('name')
-    data =  get_Table_Data(name)
+    name = request.args.get('username')
+    print type(name)
+    name = str(name)
+    print type(name)
+
+    data =  get_table_data(name)
     posts=[]
     for value in data:
         dict_data = {}
@@ -102,12 +108,9 @@ def chaxun():
     	posts.append(dict_data)
     return render_template("grade.html",posts=posts)	
               
-    
-@app.route('/grade',methods=['GET'])
-def getGrades():
-    return render_template("grade.html")	   
+
 
 if __name__ == '__main__':
-    app.run()  # 启动app的调试模式
+    app.run(debug=True)  # 启动app的调试模式
 
 
