@@ -409,10 +409,10 @@ session.commit()
 session.close()
 ```
 以上信息可以明了：
-| book            | author1       | author2      | author2   |
-| :--------       | --------:     | :--:         | :--:      |
-| The First Demo  | Futongyong    | Xiangjinhu   |           |
-| The Second Demo | Chenwei       | Xiangjinhu   |           |
+| book            | author1       | author2      | author3   |
+| :-              | :-:           |  :-:         | :-:       |
+| The First Demo  | Futongyong    | Xiangjinhu   | NULL      |
+| The Second Demo | Chenwei       | Xiangjinhu   | NULL      |
 | The Third Demo  | Futongyong    | Chenwei      | Xiangjinhu|
 现在来查询看看：
 ```python
