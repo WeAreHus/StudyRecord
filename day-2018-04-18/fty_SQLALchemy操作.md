@@ -57,8 +57,11 @@ class Student(object):
 或者执行：
 
 `http://pypi.douban.com/packages/source/S/SQLAlchemy/SQLAlchemy-0.9.3.tar.gz
+
 tar -xzvf SQLAlchemy-0.9.3.tar.gz
+
 cd SQLAlchemy-0.9.3 
+
 sudo python setup.py install`
 
 ### 建表
