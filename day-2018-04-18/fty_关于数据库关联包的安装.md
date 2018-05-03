@@ -26,6 +26,7 @@ $ python setup.py build
 $ python setup.py install
 ```
 **注意：请确保您有root权限来安装上述模块。**
+
 ---
 ### 如何安装pip？
 下载文件
@@ -46,7 +47,10 @@ $ python setup.py install
 
 或者：
 
-`http://pypi.douban.com/packages/source/S/SQLAlchemy/SQLAlchemy-0.9.3.tar.gz
-tar -xzvf SQLAlchemy-0.9.3.tar.gz
-cd SQLAlchemy-0.9.3 
-sudo python setup.py install`
+`http://pypi.douban.com/packages/source/S/SQLAlchemy/SQLAlchemy-0.9.3.tar.gz`
+
+`tar -xzvf SQLAlchemy-0.9.3.tar.gz`
+
+`cd SQLAlchemy-0.9.3 `
+
+`sudo python setup.py install`
