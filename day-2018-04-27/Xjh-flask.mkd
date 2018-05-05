@@ -20,7 +20,7 @@ def get_topic(topic_id):
 ```
 通过业务逻辑函数拿到数据后，接下来需要根据这些数据生成HTTP响应（对于Web应用来说，HTTP响应一般是一个HTML文件）。Web开发中的一般做法是提供一个HTML模板文件，然后将数据传入模板，经过渲染后得到最终需要的HTML响应文件。  
 
-一种比较常见的场景是，**请求虽然不同，但响应中数据的展示方式是相同的。**仍以论坛为例，对不同topic而言，其具体topic content虽然不同，但页面展示的方式是一样的，都有标题拦，内容栏等。也就是说，对于 topic 来说，我们只需提供一个HTML模板，然后传入不同topic数据，即得到不同的HTTP响应。这就是所谓的模板渲染，如下图所示：  
+一种比较常见的场景是，**请求虽然不同，但响应中数据的展示方式是相同的**仍以论坛为例，对不同topic而言，其具体topic content虽然不同，但页面展示的方式是一样的，都有标题拦，内容栏等。也就是说，对于 topic 来说，我们只需提供一个HTML模板，然后传入不同topic数据，即得到不同的HTTP响应。这就是所谓的模板渲染，如下图所示：  
 ![png](https://segmentfault.com/img/remote/1460000007326286?w=1670&h=906)
 Flask 使用 ``Jinja2`` 模板渲染引擎来做模板渲染，代码如下:
 ```
@@ -30,7 +30,7 @@ def get_topic(topic_id):
     # Get the data we need.
     return render_template('path/to/template.html', data_needed)
 ```
-###总结：  
+### 总结：  
 Flask处理一个请求的流程就是，首先根据 URL 决定由那个函数来处理，然后在函数中进行操作，取得所需的数据。再将数据传给相应的模板文件中，由Jinja2 负责渲染得到 HTTP 响应内容，然后由Flask返回响应内容。
 
 
