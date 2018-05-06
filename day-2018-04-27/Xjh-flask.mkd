@@ -1,0 +1,37 @@
+# flask框架的原理
+---- 
+###  框架的作用  
+Web(HTTP)服务器，Web应用程序，Web框架，WSGI这些 Python Web 开发中的概念。我们知道，Web框架通过将不同Web应用程序中的共性部分给抽象出来，提供一系列通用的接口，从而避免开发者做重复性工作，让其将精力放在业务相关的实现.  
+### flask框架
+Flask的所有核心feature：  
+![png](https://pic2.zhimg.com/80/v2-49277de6095a1a53a6323ae6a040c94a_hd.jpg)  
+![flask](https://segmentfault.com/img/remote/1460000007326283?w=1314&h=904)  
+为了理解 Flask 框架是如何抽象出Web开发中的共同部分，我们先来看看Web应用程序的一般流程。对于Web应用来说，当客户端想要获取动态资源时，就会发起一个HTTP请求（比如用浏览器访问一个 URL），Web应用程序会在后台进行相应的业务处理，（从数据库或者进行一些计算操作等）取出用户需要的数据，生成相应的HTTP响应（当然，如果访问静态资源，则直接返回资源即可，不需要进行业务处理）  
+![web应用流程图](https://segmentfault.com/img/remote/1460000007326284?w=1588&h=910)  
+实际应用中，不同的请求可能会调用相同的处理逻辑。这里有着相同业务处理逻辑的 HTTP 请求可以用一类 URL 来标识。比如论坛站点中，对于所有的获取Topic内容的请求而言，可以用  ``topic/<topic_id>/``  这类URL来表示，这里的 ``topic_id`` 用以区分不同的topic。接着在后台定义一个 ``get_topic(topic_id)`` 的函数，用来获取topic相应的数据，此外还需要建立URL和函数之间的一一对应关系。这就是Web开发中所谓的路由分发，如下图所示：  
+![png](https://segmentfault.com/img/remote/1460000007326285?w=1572&h=940)  
+Flask底层使用``werkzeug``来做路由分发，代码写起来十分简单，如下：
+```
+@app.route('/topic/<int:topic_id>/') 
+def get_topic(topic_id):
+    # Do some cal or read from database
+    # Get the data we need.
+    
+```
+通过业务逻辑函数拿到数据后，接下来需要根据这些数据生成HTTP响应（对于Web应用来说，HTTP响应一般是一个HTML文件）。Web开发中的一般做法是提供一个HTML模板文件，然后将数据传入模板，经过渲染后得到最终需要的HTML响应文件。  
+
+一种比较常见的场景是，**请求虽然不同，但响应中数据的展示方式是相同的**仍以论坛为例，对不同topic而言，其具体topic content虽然不同，但页面展示的方式是一样的，都有标题拦，内容栏等。也就是说，对于 topic 来说，我们只需提供一个HTML模板，然后传入不同topic数据，即得到不同的HTTP响应。这就是所谓的模板渲染，如下图所示：  
+![png](https://segmentfault.com/img/remote/1460000007326286?w=1670&h=906)
+Flask 使用 ``Jinja2`` 模板渲染引擎来做模板渲染，代码如下:
+```
+@app.route('/topic/<int:topic_id>/')
+def get_topic(topic_id):
+    # Do some cal or read from database
+    # Get the data we need.
+    return render_template('path/to/template.html', data_needed)
+```
+### 总结：  
+Flask处理一个请求的流程就是，首先根据 URL 决定由那个函数来处理，然后在函数中进行操作，取得所需的数据。再将数据传给相应的模板文件中，由Jinja2 负责渲染得到 HTTP 响应内容，然后由Flask返回响应内容。
+
+
+

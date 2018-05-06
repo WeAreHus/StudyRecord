@@ -56,10 +56,13 @@ class Student(object):
 
 或者执行：
 
-`http://pypi.douban.com/packages/source/S/SQLAlchemy/SQLAlchemy-0.9.3.tar.gz
-tar -xzvf SQLAlchemy-0.9.3.tar.gz
-cd SQLAlchemy-0.9.3 
-sudo python setup.py install`
+`http://pypi.douban.com/packages/source/S/SQLAlchemy/SQLAlchemy-0.9.3.tar.gz`
+
+`tar -xzvf SQLAlchemy-0.9.3.tar.gz`
+
+`cd SQLAlchemy-0.9.3 `
+
+`sudo python setup.py install`
 
 ### 建表
 ---
@@ -291,9 +294,9 @@ stu = relationship("Stu", backref="my_study_record")
 
 &emsp;&emsp;我们可以看看表的属性：
 
-[stu表](https://github.com/CANYOUFINDIT/myproject/blob/master/markdown/stu.png)
+![stu表](https://github.com/CANYOUFINDIT/myproject/blob/master/markdown/stu.png)
 
-[study_record表](https://github.com/CANYOUFINDIT/myproject/blob/master/markdown/rec.png)
+![study_record表](https://github.com/CANYOUFINDIT/myproject/blob/master/markdown/rec.png)
 
 
 现在我们想两个表中插入一些数据：
@@ -315,7 +318,7 @@ session.add_all([s1,s2,s3,s4,study_obj1,study_obj2,study_obj3,study_obj4])  # �
 session.commit()
 ```
 看看插入结果：
-[插入结果](https://github.com/CANYOUFINDIT/myproject/blob/master/markdown/1.png)
+![插入结果](https://github.com/CANYOUFINDIT/myproject/blob/master/markdown/1.png)
 
 我们现在查询看看：
 ```python
