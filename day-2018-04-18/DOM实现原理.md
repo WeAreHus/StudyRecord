@@ -6,8 +6,7 @@
 当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model），为HTML和XML提供的API。
 HTML DOM 模型被构造为对象的树。
 
-### 1.HTML DOM树
-![cmd-markdown-logo](图片/1.jpg)
+### 1.HTML DOM树![cmd-markdown-logo](图片/1.jpg)
 ### 2.什么是DOM？
 
 ![cmd-markdown-logo](图片/2.jpg)
