@@ -1,7 +1,7 @@
 # DOM对象
 -----------
-##HTML DOM (文件对象模型)
-##DOM ：Document Object Model
+## HTML DOM (文件对象模型)
+## DOM ：Document Object Model
 
 当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model），为HTML和XML提供的API。
 HTML DOM 模型被构造为对象的树。
