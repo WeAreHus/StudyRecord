@@ -1,4 +1,4 @@
-#DOM对象
+# DOM对象
 -----------
 ##HTML DOM (文件对象模型)
 ##DOM ：Document Object Model
@@ -6,9 +6,9 @@
 当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model），为HTML和XML提供的API。
 HTML DOM 模型被构造为对象的树。
 
-###1.HTML DOM树
+### 1.HTML DOM树
 ![cmd-markdown-logo](图片/1.jpg)
-###2.什么是DOM？
+### 2.什么是DOM？
 
 ![cmd-markdown-logo](图片/2.jpg)
 -----------
@@ -19,19 +19,19 @@ HTML DOM 模型被构造为对象的树。
 * 用来镶嵌其他节点的称为父节点。
 * 被镶嵌的称为子节点。
 
-###3.DOM有什么用？
+### 3.DOM有什么用？
 * 通过DOM可以改变网页
 * 一般用JavaScript来操作dom来改变网页
 * 为了使用JavaScript来改变网页，必须告诉js去改变哪一个节点，这就是操作dom。
 -----------
-###实例1如下图：
+### 实例1如下图：
 ![cmd-markdown-logo](图片/3.jpg)
 ###点击按钮之后显示如图：
 ![cmd-markdown-logo](图片/4.jpg)
 
 通过点击按钮使文本发生了改变。
 
-###代码如下：
+### 代码如下：
 ```html
 <!DOCTYPE html>
 <html>
@@ -50,7 +50,7 @@ HTML DOM 模型被构造为对象的树。
 </body>
 </html>
 ```
-####从代码中我们可以看出dom通过访问属性id将文本中的内容改变成“hello dom！”
+#### 从代码中我们可以看出dom通过访问属性id将文本中的内容改变成“hello dom！”
 ----------
 ###实例2如下图：
 ![cmd-markdown-logo](图片/5.jpg)
@@ -59,7 +59,7 @@ HTML DOM 模型被构造为对象的树。
 
 我们发现点击按钮之后网页多了一行“绿茶”的列表，网页暂时性的发生了改变。
 
-###代码如下：
+### 代码如下：
 ```html
 <!DOCTYPE html>
 <html>
