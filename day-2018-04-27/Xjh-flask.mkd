@@ -6,11 +6,11 @@ web 框架出现的目的也比较明确：**隐藏基础而又烦人的处理 H
 它们接收 HTTP 请求，然后分发任务，并生成 HTML，然后返回包含 HTML 的 HTTP 应答。
 ### flask框架
 ![flask](https://segmentfault.com/img/remote/1460000007326283?w=1314&h=904)    
-> 在flask中，根据wsgi规范，app是一个接口，并接受两个参数,即，application(environ, start_response)
+在flask中，根据wsgi规范，app是一个接口，并接受两个参数,即，application(environ, start_response)
 在run_wsgi的run_wsgi我们可以清晰的看到调用过程  
-![png](https://pic2.zhimg.com/80/v2-49277de6095a1a53a6323ae6a040c94a_hd.jpg)  
-Flask的所有核心feature：  
-1. 把客户端的请求封装成Request对象直接给你  
+![png](https://pic2.zhimg.com/80/v2-49277de6095a1a53a6323ae6a040c94a_hd.jpg)  
+**Flask的所有核心feature：**
+1. 把客户端的请求封装成Request对象直接给你  
 2. 定义一下路由规则(Route)，什么函数处理什么URL  
 3. 写一下处理请求的业务逻辑(View Function)，接到一些请求要做什么事情返回什么  
 4. 小应用、小工具就别用template了，直接在view function里面返回就得了  
