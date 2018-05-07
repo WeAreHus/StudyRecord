@@ -6,7 +6,13 @@ web 框架出现的目的也比较明确：**隐藏基础而又烦人的处理 H
 Web(HTTP)服务器，Web应用程序，Web框架，WSGI这些 Python Web 开发中的概念。我们知道，Web框架通过将不同Web应用程序中的共性部分给抽象出来，提供一系列通用的接口，从而避免开发者做重复性工作，让其将精力放在业务相关的实现.  
 ### flask框架
 Flask的所有核心feature：  
-![png](https://pic2.zhimg.com/80/v2-49277de6095a1a53a6323ae6a040c94a_hd.jpg)  
+1. 把客户端的请求封装成Request对象直接给你  
+2. 定义一下路由规则(Route)，什么函数处理什么URL  
+3. 写一下处理请求的业务逻辑(View Function)，接到一些请求要做什么事情返回什么  
+4. 小应用、小工具就别用template了，直接在view function里面返回就得了  
+5. Blueprint在小应用的时候就别用了，应用变大的时候再用，它就是用来进行代码组织的  
+6. 各种插件最有用的就是WTForm，做表单的时候异常简单  
+![png](https://pic2.zhimg.com/80/v2-49277de6095a1a53a6323ae6a040c94a_hd.jpg) 
 ![flask](https://segmentfault.com/img/remote/1460000007326283?w=1314&h=904)  
 为了理解 Flask 框架是如何抽象出Web开发中的共同部分，我们先来看看Web应用程序的一般流程。对于Web应用来说，当客户端想要获取动态资源时，就会发起一个HTTP请求（比如用浏览器访问一个 URL），Web应用程序会在后台进行相应的业务处理，（从数据库或者进行一些计算操作等）取出用户需要的数据，生成相应的HTTP响应（当然，如果访问静态资源，则直接返回资源即可，不需要进行业务处理）  
 ![web应用流程图](https://segmentfault.com/img/remote/1460000007326284?w=1588&h=910)  
