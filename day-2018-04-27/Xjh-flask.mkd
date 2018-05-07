@@ -1,13 +1,13 @@
 # flask框架的原理
 ---- 
 ###  框架的作用  
-web 框架出现的目的也比较明确：**隐藏基础而又烦人的处理 HTTP 请求和应答的代码**。至于要隐藏多少内容，就要看框架啦。Django 和 Flask 代表了两个极端。Django 每种情况都有涉及，而 Flask 标榜自己是“微框架“，只处理 web 程序最核心的功能，依赖其他三方插件来完成其他不常用的工作。\
+web 框架出现的目的也比较明确：**隐藏基础而又烦人的处理 HTTP 请求和应答的代码**。至于要隐藏多少内容，就要看框架啦。Django 和 Flask 代表了两个极端。Django 每种情况都有涉及，而 Flask 标榜自己是“微框架“，只处理 web 程序最核心的功能，依赖其他三方插件来完成其他不常用的工作。
 > Web(HTTP)服务器，Web应用程序，Web框架，WSGI这些 Python Web 开发中的概念。我们知道，Web框架通过将不同Web应用程序中的共性部分给抽象出来，提供一系列通用的接口，从而避免开发者做重复性工作，让其将精力放在业务相关的实现.
 它们接收 HTTP 请求，然后分发任务，并生成 HTML，然后返回包含 HTML 的 HTTP 应答。
-> 根据wsgi规范，app是一个接口，并接受两个参数,即，application(environ, start_response)
-在run_wsgi的run_wsgi我们可以清晰的看到调用过程
 ### flask框架
 ![flask](https://segmentfault.com/img/remote/1460000007326283?w=1314&h=904)  
+> 在flask中，根据wsgi规范，app是一个接口，并接受两个参数,即，application(environ, start_response)
+在run_wsgi的run_wsgi我们可以清晰的看到调用过程
 Flask的所有核心feature：  
 ![png](https://pic2.zhimg.com/80/v2-49277de6095a1a53a6323ae6a040c94a_hd.jpg)
 1. 把客户端的请求封装成Request对象直接给你  
