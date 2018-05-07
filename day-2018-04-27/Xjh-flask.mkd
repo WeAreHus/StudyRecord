@@ -1,19 +1,22 @@
 # flask框架的原理
 ---- 
 ###  框架的作用  
-web 框架出现的目的也比较明确：**隐藏基础而又烦人的处理 HTTP 请求和应答的代码**。至于要隐藏多少内容，就要看框架啦。Django 和 Flask 代表了两个极端。Django 每种情况都有涉及，而 Flask 标榜自己是“微框架“，只处理 web 程序最核心的功能，依赖其他三方插件来完成其他不常用的工作。  
-它们接收 HTTP 请求，然后分发任务，并生成 HTML，然后返回包含 HTML 的 HTTP 应答。  
-Web(HTTP)服务器，Web应用程序，Web框架，WSGI这些 Python Web 开发中的概念。我们知道，Web框架通过将不同Web应用程序中的共性部分给抽象出来，提供一系列通用的接口，从而避免开发者做重复性工作，让其将精力放在业务相关的实现.  
+web 框架出现的目的也比较明确：**隐藏基础而又烦人的处理 HTTP 请求和应答的代码**。至于要隐藏多少内容，就要看框架啦。Django 和 Flask 代表了两个极端。Django 每种情况都有涉及，而 Flask 标榜自己是“微框架“，只处理 web 程序最核心的功能，依赖其他三方插件来完成其他不常用的工作。\
+> Web(HTTP)服务器，Web应用程序，Web框架，WSGI这些 Python Web 开发中的概念。我们知道，Web框架通过将不同Web应用程序中的共性部分给抽象出来，提供一系列通用的接口，从而避免开发者做重复性工作，让其将精力放在业务相关的实现.
+它们接收 HTTP 请求，然后分发任务，并生成 HTML，然后返回包含 HTML 的 HTTP 应答。
+> 根据wsgi规范，app是一个接口，并接受两个参数,即，application(environ, start_response)
+在run_wsgi的run_wsgi我们可以清晰的看到调用过程
 ### flask框架
+![flask](https://segmentfault.com/img/remote/1460000007326283?w=1314&h=904)  
 Flask的所有核心feature：  
+![png](https://pic2.zhimg.com/80/v2-49277de6095a1a53a6323ae6a040c94a_hd.jpg)
 1. 把客户端的请求封装成Request对象直接给你  
 2. 定义一下路由规则(Route)，什么函数处理什么URL  
 3. 写一下处理请求的业务逻辑(View Function)，接到一些请求要做什么事情返回什么  
 4. 小应用、小工具就别用template了，直接在view function里面返回就得了  
 5. Blueprint在小应用的时候就别用了，应用变大的时候再用，它就是用来进行代码组织的  
 6. 各种插件最有用的就是WTForm，做表单的时候异常简单  
-![png](https://pic2.zhimg.com/80/v2-49277de6095a1a53a6323ae6a040c94a_hd.jpg) 
-![flask](https://segmentfault.com/img/remote/1460000007326283?w=1314&h=904)  
+### 具体的业务实现 
 为了理解 Flask 框架是如何抽象出Web开发中的共同部分，我们先来看看Web应用程序的一般流程。对于Web应用来说，当客户端想要获取动态资源时，就会发起一个HTTP请求（比如用浏览器访问一个 URL），Web应用程序会在后台进行相应的业务处理，（从数据库或者进行一些计算操作等）取出用户需要的数据，生成相应的HTTP响应（当然，如果访问静态资源，则直接返回资源即可，不需要进行业务处理）  
 ![web应用流程图](https://segmentfault.com/img/remote/1460000007326284?w=1588&h=910)  
 实际应用中，不同的请求可能会调用相同的处理逻辑。这里有着相同业务处理逻辑的 HTTP 请求可以用一类 URL 来标识。比如论坛站点中，对于所有的获取Topic内容的请求而言，可以用  ``topic/<topic_id>/``  这类URL来表示，这里的 ``topic_id`` 用以区分不同的topic。接着在后台定义一个 ``get_topic(topic_id)`` 的函数，用来获取topic相应的数据，此外还需要建立URL和函数之间的一一对应关系。这就是Web开发中所谓的路由分发，如下图所示：  
