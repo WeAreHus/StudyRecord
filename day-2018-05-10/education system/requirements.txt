@@ -1,0 +1,8 @@
+requirements.txt列出一些依赖包，这样就可以很容易的在不同的计算机上部署一个相同的虚拟环境。
+
+Flask == 0.12.2
+Python == 2.7.12
+mysql == Ver 14.14 Distrib 5.7.21
+Flask-SQLAlchemy == 2.3.2
+数据库迁移：Flask-Migrate
+
