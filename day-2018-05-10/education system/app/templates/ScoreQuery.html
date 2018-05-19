@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>学生成绩查询</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <form action="/scorequery" method="GET">
+  	    <h2>学生成绩查询</h2>
+            <label>学号：<input type="text" name="id" value=""></label>
+            <input type="submit" value="完成">
+            <div>
+                {% for post in posts %}
+                <tr>
+                课程：<td>{{post.0}}</td>
+                分数：<td>{{post.1}}</td><br>
+                课程：<td>{{post.2}}</td>
+                分数：<td>{{post.3}}</td><br>
+                课程：<td>{{post.4}}</td>
+                分数：<td>{{post.5}}</td><br>
+                课程：<td>{{post.6}}</td>
+                分数：<td>{{post.7}}</td><br>
+                </tr>
+                {% endfor %}
+            </div>
+        </form>
+    </body>
+</html>

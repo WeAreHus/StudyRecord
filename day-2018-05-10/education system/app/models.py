@@ -57,7 +57,7 @@ class Scores(Base):
     user = relationship('User', backref = 'myscore')
 
     def __repr__(self):
-        return "<user_id:%s object_id:%s fraction:%s>" % (self.user_id, self.class_id, str(self.fraction)) 
+        return "<学生学号:%s 课程代号:%s 分数:%s>" % (self.user_id, self.class_id, self.fraction) 
 
 def init_db():
     Base.metadata.create_all(engine)

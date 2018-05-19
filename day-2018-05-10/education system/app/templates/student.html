@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>功能列表（教师）</title>
+        <title>功能列表（学生）</title>
         <meta charset="UTF-8">
     </head>
     <body>
@@ -53,30 +53,33 @@
         }
         </style>
         <form>
-            <h3>选择操作</h3>
+            <h2>选择操作</h2>
             <div class="dropdown">
-                <button class="dropbtn">学生用户管理</button>
+                <button class="dropbtn">信息查询</button>
                 <div class="dropdown-content">          
-                    <a href = "/student_regist" target="_blank" >学生用户注册</a><br>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropbtn">学生成绩管理</button>
-                <div class="dropdown-content"> 
-                    <a href = "/class_add" target="_blank" >学生课程添加</a><br>
-                    <a href = "/score_add" target="_blank" >学生成绩录入</a><br>
-                    <a href = "/score_delete" target="_blank" >学生成绩删除</a><br>
-                    <a href = "/score_query" target="_blank" >学生成绩查询</a><br>
-                    <br><br>
+                    <a href = "/student_regist" target="_blank" >成绩查询</a><br>
                 </div>
             </div>
     
             <div class="dropdown">
-                <button class="dropbtn">密码管理</button>
+                <button class="dropbtn">信息维护</button>
                 <div class="dropdown-content">             
-                    <a href = "/change_my_password" target="_blank" >密码修改</a><br>
-                    <a href = "/change_student_password" target="_blank" >学生密码修改</a><br>
+                    <a href = "/change_students_password" target="_blank" >密码修改</a><br>
+                    <a href = "/change_data" target="_blank" >资料修改</a><br>
                 </div>
+            </div>
+            <div>
+                {% for post in posts %}
+                <tr>
+                <h2>个人信息</h2>
+                学号：<td>{{post.id}}</td><br>
+                姓名：<td>{{post.name}}</td><br>
+                出生年月日：<td>{{post.birthday}}</td><br>
+                学院：<td>{{post.collage}}</td><br>
+                专业：<td>{{post.major}}</td><br>
+                年级：<td>{{post.grade}}</td><br>
+                </tr>
+                {% endfor %}
             </div>
         </form>
     </body>
