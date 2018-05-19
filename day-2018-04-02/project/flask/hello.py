@@ -24,17 +24,10 @@ def getGrades():
 #获取登录参数及处理
 @app.route('/login')
 def getLoginRequest():
-    #pdb.set_trace()
-    db = MySQLdb.connect(host="localhost",user="root",passwd="xx1997",db="grades",charset="utf8")
-    #youbiao
-
-    cur=db.cursor()
-    pdb.set_trace()
-    sql = "select * from class where name = "+"'"+request.args.get('username')+ "'"+" and password="+"'" +request.args.get('password')+"'"+""
     db =MySQLdb.connect(
         host='localhost', port=3306,
-        user='man_user', passwd='674099',
-        db='snailblog', charset='utf8',
+        user='cris', passwd='123456',
+        db='Students', charset='utf8',
     )
     cursor = db.cursor()
     sql = ("select * from class where username=" + "'" + request.args.get('username') + "'" +
@@ -53,24 +46,13 @@ def getLoginRequest():
         db.rollback()
     db.close()
 
-
-
-@app.route('/register',methods=['GET'])
-def  getRigistRequest():
-    #pdb.set_trace()
-    #连接数据库,此前在数据库中创建数据库TESTDB
-    db = MySQLdb.connect(host="localhost",user="root",passwd="xx1997",db="grades",charset="utf8")
-    # 使用cursor()方法获取操作游标
-    cur = db.cursor() 
-    # SQL 插入语句
-    sql = "INSERT INTO class (username,password) VALUES ('"+request.args.get('username')+"'"+", "+request.args.get('password')+")"
 #获取注册请求及处理
 @app.route('/register')
 def getRigistRequest():
     db =MySQLdb.connect(
         host='localhost', port=3306,
-        user='man_user', passwd='674099',
-        db='snailblog', charset='utf8',
+        user='cris', passwd='123456',
+        db='Students', charset='utf8',
     ) 
     cursor = db.cursor()
     sql = ( "INSERT INTO class (username,password) VALUES ('" +
@@ -97,14 +79,11 @@ def suc():
 def get_table_data(name):
     db =MySQLdb.connect(
         host='127.0.0.1', port=3306,
-        user='man_user', passwd='674099',
-        db='snailblog', charset='utf8',
+        user='cris', passwd='123456',
+        db='Students', charset='utf8',
     )
     cur=db.cursor()
-  
     res=cur.execute("select * from student where name = '" + name + "'")
-    res=cur.execute("select * from students where name = '" + name + "'")
-
     res=cur.fetchmany(res)
     cur.close()
     db.commit()
@@ -133,5 +112,6 @@ def chaxun():
 
 if __name__ == '__main__':
     app.run(debug=True)  # 启动app的调试模式
+
 
 
