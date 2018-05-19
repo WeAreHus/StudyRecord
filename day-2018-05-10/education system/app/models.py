@@ -1,13 +1,13 @@
 # -*- coding: UTF-8 -*-
-from sqlalchemy import Table, Column, Integer, String,DATE, ForeignKey, SmallInteger
+from sqlalchemy import Table, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-'''
-import os
-os.system("python /home/fty/flasky/app/main/drop_table.py")
-'''
+
+#import os
+#os.system("python /home/fty/flasky/app/drop_table.py")
+
 db_user = 'man_user'
 passwd = '674099'
 database = 'snailblog'
@@ -25,12 +25,12 @@ user_to_classes = Table('user_to_classes', Base.metadata,
 class User(Base):
     __tablename__ = 'user'
     id = Column(Integer,primary_key=True)           #学号
-    name = Column(String(10))                       #姓名
-    birthday = Column(SmallInteger)                 #出生年月日
+    name = Column(String(10), nullable=False)       #姓名
+    birthday = Column(Integer)                 #出生年月日
     collage = Column(String(20))                    #所属学院
     major = Column(String(20))                      #所属专业
-    grade = Column(SmallInteger)                    #年级
-    password = Column(String(20))                   #密码
+    grade = Column(Integer)                    #年级
+    password = Column(String(20), nullable=False)   #密码
     power = Column(Integer)                         #权限等级
     #建立虚拟关系关联其他表
     classes = relationship('Classes', secondary = user_to_classes, backref = 'myuser')
@@ -41,7 +41,7 @@ class User(Base):
 class Classes(Base):
     __tablename__ = 'classes'
     id = Column(Integer,primary_key=True)
-    name = Column(String(20))                       #课程名
+    name = Column(String(20), nullable=False)       #课程名
 
     def __repr__(self):
         return self.name 
@@ -49,7 +49,7 @@ class Classes(Base):
 class Scores(Base):
     __tablename__ = 'scores'
     id = Column(Integer,primary_key=True)
-    fraction = Column(SmallInteger)                 #分数
+    fraction = Column(Integer, nullable=False) #分数
     #外键关联
     user_id = Column(Integer, ForeignKey("user.id"))
     class_id = Column(Integer, ForeignKey("classes.id"))
@@ -67,9 +67,10 @@ def drop_db():
 
 init_db()
 
+'''
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
-'''
+
 user1 = User(name="fty", birthday=1999, collage ="jk",  major ="txgc", grade =1604, password ="674099", power =1)
 user2 = User(name="cw", birthday=1998, collage ="jk",  major ="rjgc", grade =1607, password ="111111", power =1)
 user3 = User(name="xjh", birthday=1998, collage ="jk",  major ="txgc", grade =1604, password ="123456", power =1)
@@ -94,7 +95,7 @@ print(student.classes)
 #查询课程的学生
 object = session.query(Classes).filter(Classes.name=="math").first()
 print(object.myuser)
-'''
+
 #查询学生的成绩
 student_score = session.query(User).filter(User.name=="fty").first()
 print student_score.myscore
@@ -104,5 +105,7 @@ print class_score.classes_scores
 #查询指定学生指定课程的分数(id为1的数学成绩)
 ret=session.query(Scores,Classes).join(Classes,isouter=True).filter(Classes.name=='math').filter(Scores.user_id=='1').all()
 print(ret)
-#session.close()
-#drop_db()
+session.close()
+
+drop_db()
+'''
