@@ -5,9 +5,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-#import os
-#os.system("python /home/fty/flasky/app/drop_table.py")
-
+'''
+import os
+os.system("python /home/fty/flasky/app/drop_table.py")
+'''
 db_user = 'man_user'
 passwd = '674099'
 database = 'snailblog'
@@ -66,46 +67,3 @@ def drop_db():
     Base.metadata.drop_all(engine)
 
 init_db()
-
-'''
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
-
-user1 = User(name="fty", birthday=1999, collage ="jk",  major ="txgc", grade =1604, password ="674099", power =1)
-user2 = User(name="cw", birthday=1998, collage ="jk",  major ="rjgc", grade =1607, password ="111111", power =1)
-user3 = User(name="xjh", birthday=1998, collage ="jk",  major ="txgc", grade =1604, password ="123456", power =1)
-c1 = Classes(name ="math")
-c2 = Classes(name ="chinese")
-c3 = Classes(name ="english")
-s1 = Scores(fraction =99, user_id = 1, class_id = 1)
-s2 = Scores(fraction =90, user_id = 2, class_id = 1)
-s3 = Scores(fraction =80, user_id = 3, class_id = 1)
-s4 = Scores(fraction =60, user_id = 1, class_id = 2)
-s5 = Scores(fraction =94, user_id = 1, class_id = 3)
-
-user1.classes = [c1, c3]
-user2.classes = [c1, c2]
-user3.classes = [c1, c2, c3]
-session.add_all([user1, user2, user3, c1, c2, c3, s1, s2, s3, s4, s5])
-session.commit()
-
-#查询学生的课程
-student = session.query(User).filter(User.name=="fty").first()
-print(student.classes)
-#查询课程的学生
-object = session.query(Classes).filter(Classes.name=="math").first()
-print(object.myuser)
-
-#查询学生的成绩
-student_score = session.query(User).filter(User.name=="fty").first()
-print student_score.myscore
-#查询math课的所有学生的成绩
-class_score = session.query(Classes).filter(Classes.name=="math").first()
-print class_score.classes_scores
-#查询指定学生指定课程的分数(id为1的数学成绩)
-ret=session.query(Scores,Classes).join(Classes,isouter=True).filter(Classes.name=='math').filter(Scores.user_id=='1').all()
-print(ret)
-session.close()
-
-drop_db()
-'''
