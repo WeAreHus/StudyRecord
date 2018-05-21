@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>解析测试</title>
+    <!--引入EasyUI核心UI文件CSS-->
+    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.4.5/themes/default/easyui.css">
+    <!--引入EasyUI图标文件-->
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.4.5/themes/icon.css">
+    <!--引入EasyUI的中文汉化包-->
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.4.5/locale/easyui-lang-zh_CN.js">
+    <!--引入jQuery的核心库-->
+    <script type="text/javascript" src="jquery-easyui-1.5.4.5/jquery.min.js"></script>
+	<!--引入jQuery EasyUI的核心库-->
+    <script type="text/javascript" src="jquery-easyui-1.5.4.5/jquery.easyui.min.js"></script>
+    <!--导入自己创建的JS文件-->
+    <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+<div id="box">
+    <div class="easyui-dialog" title="标题" style="width: 400px;height: 200px">
+        你好
+    </div>
+</div>
+
+</body>
+
+<!--
+Parser解析器是专门解析渲染各种UI组件了，一般来说，我们并不需要使用它即可自动完成UI组件的解析工作。当然，有时可能在某些环境下需要手动解析的情况。
+手动解析一般是使用class的情况下有效，比如设置 class="easyui-dialog"。
+-->

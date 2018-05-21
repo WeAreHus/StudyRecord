@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>dom元素对象实例</title>
+</head>
+<body>
+<ul id="myList"><li>咖啡</li><li>可乐</li></ul>
+<p id="demo">单击按钮将项目添加到列表中</p>
+<button onclick="myFunction()">点我</button>
+<script>
+function myFunction(){
+	//创建一个节点
+	var node=document.createElement("li");
+    //创建一个文本节点
+	var textnode=document.createTextNode("绿茶");
+	//将文本节点添加到li节点上
+	node.appendChild(textnode);
+	//将节点（node）添加到myList列表中
+	document.getElementById("myList").appendChild(node);
+}
+</script>
+<p><strong>注意:</strong><br>首先创建一个节点，<br> 然后创建一个文本节点，<br>然后将文本节点添加到li节点上。<br>最后将节点添加到列表中。</p>
+
+</body>
+</html>

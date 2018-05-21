@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<script src="jquery-3.3.1.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $("#btn1").click(function(){
+    $('#div1').load('123.txt',function(responseTxt,statusTxt,xhr){
+        if (statusTxt=="success")
+            alert ("外部内容加载成功！");
+        if (statusTxt=="error")
+            alert("Error:"+xhr.status+xhr.statusText)
+
+    });
+  });
+});
+</script>
+</head>
+
+<body>
+
+<div id="div1"><h1>请点击下面的按钮，通过 jQuery AJAX 改变这段文本。</h1></div>
+<button id="btn1" type="button">获得外部的内容</button>
+
+</body>
+</html>

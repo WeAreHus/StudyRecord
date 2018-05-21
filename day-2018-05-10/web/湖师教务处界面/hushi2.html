@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>教学综合信息服务平台</title>
+	<meta charset="utf-8">
+<script type="text/javascript" src="../templates/jquery-3.3.1.min.js"></script>
+
+
+<!--Bootstrap布局框架-->
+<link rel="stylesheet" type="text/css" href="http://jwxt.hbnu.edu.cn:80/zftal-ui-v5-1.0.2/assets/plugins/bootstrap/css/bootstrap.min.css?ver=20180413" />
+
+<link rel="stylesheet" type="text/css" href="http://jwxt.hbnu.edu.cn:80/zftal-ui-v5-1.0.2/assets/css/zftal-ui.css?ver=20180413" />
+<script type="text/javascript" src="http://jwxt.hbnu.edu.cn:80/zftal-ui-v5-1.0.2/assets/plugins/bootstrap/js/bootstrap.min.js?ver=20180413" charset="utf-8"">
+</script>
+
+<style>
+
+
+
+.navbar-brand{
+	float: left;
+	height: 50px;
+	text-decoration: none;
+}
+
+.logo_2{
+	font: normal 24px/45px "microsoft YaHei";
+    color: #fff!important;
+    padding: 5px;
+}
+
+.navbar-right{
+	float: right !important;
+	margin-right: -15px;
+}
+
+.navbar-nav{
+	margin: 0px;
+}
+
+.index-wdyy{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	background-color:#fff;
+	margin-bottom: 15px;
+}
+
+.wdyy-title{
+	color: #333333;
+    font: bold 15px/42px "microsoft YaHei";
+    margin-left: 20px;
+    float: left;
+}
+
+.index-wdyy .sz{
+    float: right;
+    display: block;
+    background: url(../image/ico2.png);
+    width: 22px;
+    height: 22px;
+    margin:10px;
+    overflow: hidden;
+    text-indent: -9999px;
+
+}
+
+.index-wdyy h3{
+	width: 100%;
+	height: 42px;
+	border-bottom: 1px solid #eeeeee;
+	overflow: hidden;
+}
+
+.index-grxx{
+	background-color: #fff;
+	margin-bottom: 15px;
+	height: auto !important;
+	overflow: hidden;
+}
+
+.index-title{
+	width: 100%;
+	height: 42px;
+	border-bottom: 1px solid #eeeeee; 
+	font: bold 15px/42px "microsoft YaHei";
+	color: #333333;
+}
+
+.row{
+	margin-left: -10px;
+	margin-left: -10px;
+}
+
+.index-rctx{
+	background-color: #fff;
+	margin-bottom: 15px;
+	margin-left: -15px;
+    height: 210px;
+    overflow: hidden;
+}
+
+
+
+
+	</style>
+
+</head>
+<body class="body-container">
+
+<form id="requestMap" style="display: none;">
+	<input type="hidden" id="sessionUserKey" value="2016115060726" />
+	<input type="hidden" id="gnmkdmKey" value="" />
+	<input type="hidden" id="login_type" value="" />
+</form>
+
+<div class="navbar-static-top top1">
+	<div class="container" style="width: 1400px;padding-right:15px;padding-left: 15px;margin-right: auto;margin-left: auto; ">
+		<div class="navbar-header">
+			<a class="navbar-brand logo_2" href="#"><img src="../image/logo_hushi2.png" style="margin-top: -3px;margin-left: -15px;float: left;">
+			<span id="xmtc">教学综合信息服务平台</span></a>
+			<button type="button" id="exit_btn" style="width: 44px;height: 34px;" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".bs-navbar-collapse-js" aria-expanded="false">退出</button>
+			<button type="button" id="js_btn" style="width: 44px;height: 34px;" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".bs-navbar-collapse-js" aria-expanded="false">
+				<img style="margin-top: 3.5px;margin-left: 2.5px;position: relative;top: -9px;position: relative;left: -10px;" src="../image/user_logo.jpg" width="42" height="32">
+			</button>	
+			
+			<button type="button" id="cd_btn" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".bs-navbar-collapse-js" aria-expanded="false">
+				<span class="sr-only">功能菜单</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+
+		<ul class="nav navbar-nav navbar-right hidden-xs">
+			<li>
+				<form class="navbar-form">
+				</form>
+			</li>
+			<li>
+				<a href="#" class="dropdown-toggle grxx" data-toggle="dropdown" ><img src="../image/user_logo.jpg" width="28" height="28"></a>
+				<ul class="dropdown-menu">
+					<li class="divier"></li>
+					<li><a href="javascript:void(0);" id="updatePassword"><i class="top_png_mm"></i>修改密码</a></li>
+
+					<li class="divier"></li>
+					<li><a href="javascript:void(0);" id="exit"><i class="top_png_tc"></i>退出</a></li>
+				</ul>
+			</li>
+		</ul>
+		<form class="navbar-form navbar-right">
+			<input type="hidden" name="language" value="zh_CN" id="localChange"/>
+		</form>
+	</div>
+</div>
+<div class="navbar_index" id="myDiv" style="display: none;">
+	<div class="index-menu">
+		<nav id="jsNav" class="navbar-toggle bs-navbar-collapse-js collapse" role="navigation" aria-expanded="false">
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a tabindex="-1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">学生
+						<span class="glyphion"></span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</div>
+
+<div class="navbar_index">
+	<div class="container" id="myDiv1">
+		<nav id="cdNav" class="navbar-collapse bs-navbar-collapse collapse" role="navigation" aria-expanded="false">    
+			<ul class="nav navbar-nav">
+				<li class="dropdown"><a href="#" id="drop1" role="button" class="dropdown-toggle" data-toggle="dropdown">报名申请<b class="caret"></b></a>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+					<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">学籍异动申请</a></li>
+					<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">考级项目报名</a></li>
+					<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">教学项目报名</a></li>
+					<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">项目补考确认</a></li>
+					<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">毕业清考报名</a></li>
+					<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">结业换证报名</a></li>
+					<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">校内课程代替申请</a></li>
+					<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">校内课程学分学点替代申请</a></li>
+					<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">校内学分学点替代申请</a></li>
+					<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">校外课程学分学点替代申请</a></li>
+				</ul></li>
+				
+				<li class="dropdown"><a href="#" id="drop1" role="button" class="dropdown-toggle" data-toggle="dropdown">信息维护<b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">学生个人信息维护</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">个人培养方案</a></li>
+                </ul></li>
+                
+                <li class="dropdown"><a href="#" id="drop1" role="button" class="dropdown-toggle" data-toggle="dropdown">选课<b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">学生课表查询</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">自主选课（一致版）</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">删除结果查询</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">课程预选</a></li>
+                </ul></li>
+           
+                <li class="dropdown"><a href="#" id="drop1" role="button" class="dropdown-toggle" data-toggle="dropdown">信息查询<b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">查询个人信息</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">学籍预警查询</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">毕业审核结果核查</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">推荐课表打印</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">学生课表查询</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">查询空闲教室</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">选课名单查询</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">学生成绩查询</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">学生成绩明细查询</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">考试信息查询</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">结业换证考试查询</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">学生学业情况查询</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">学生成绩总表打印</a></li>
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">教学执行计划查看</a></li>
+                </ul></li>
+
+                <li class="dropdown"><a href="#" id="drop1" role="button" class="dropdown-toggle" data-toggle="dropdown">教学评价<b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                	<li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">学生评价</a></li>
+			    </ul></li>
+			  
+			    <li class="dropdown"><a href="#" id="drop1" role="button" class="dropdown-toggle" data-toggle="dropdown">毕业设计(论文)<b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                    <li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">学生选题</a></li>
+                    <li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">学生课题申报</a></li>
+                    <li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">题目修改申请</a></li>
+                    <li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">课题修改申请</a></li>
+                    <li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">学生过程资料</a></li>
+                    <li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">答辩信息查看</a></li>
+                    <li><a tabindex="-1" onclick="clickMenu();return false;" href="javascript:void(0);" target="_blank">成绩查看</a></li>
+                </ul></li>	
+			</ul>
+		</nav>
+	</div>
+</div>
+
+<div class="container padding-150">
+	<div class="row">
+		<div class="col-md-3 col-sm-4">
+			
+			<div class="index-wdyy">
+				<h3><span class="wdyy-title">我的应用</span><a href="#" class="sz" id="dwyy_szbtn"></a></h3>
+				<ul class="list-unstyled" id="index_dwyy" style="height: 558px;"></ul>
+			</div>
+		</div>
+
+
+
+		<div class="col-md-9 col-sm-8">
+		<div class="row">
+			<div class="col-md-12" style="margin-left: -15px;width: 1073px;">
+				<div class="index-grxx">
+					<div class="row">
+                        <div class="col-md-5" id="yhxxIndex">
+                        	
+                        </div>
+                        <div class="col-md-7" id="newsnotice" style="height: 150px;">
+                        	<h5 class="index-title"><span title="title">通知</span></h5>
+                        </div>
+					 </div>
+				</div>
+			</div>
+        <div class="col-md-6">
+        	<div class="index-rctx"></div>
+        </div>
+        
+        <div class="col-md-6">
+        	<div class="index-rctx"></div>
+        </div>
+
+        <div class="col-md-6">
+        	<div class="index-rctx"></div>
+        </div>
+
+        <div class="col-md-6">
+        	<div class="index-rctx"></div>
+        </div>
+
+
+  
+		</div>
+	</div>
+</div>
+</div>
+
+	<div class="footer" id="footerID">
+		<p>版权所有&copy; Copyright 1999-2017  正方软件股份有限公司　　中国·杭州西湖区紫霞街176号 互联网创新创业园2号301</p>
+	</div>
+
+
+
+
+</body>
+</html>
