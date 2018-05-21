@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Blueprint, render_template, redirect
 
-user = Blueprint('user',__name__)
+students = Blueprint('students',__name__)
 
 #显示学生个人成绩信息页面，可输入学生姓名进行成个人信息查询
 @students.route('/PersonalInformation', methods=['GET'])
