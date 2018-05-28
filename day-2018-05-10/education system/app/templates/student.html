@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>教务处系统学生端</title>
+	<meta charset="utf-8">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+
+body{
+	margin: 0;
+	padding: 0;
+	background: #f0f0f0;
+}
+    /*<style>.row_gnxz{
+    	background: #aaa;
+
+    }*/
+
+	.row_title{
+		background: url(../image/24.jpg);
+		margin-top: -10px;
+		margin-left: -198px;
+		margin-right: -198px;
+		height: 200px;
+		background-color: #0483d4;
+	}
+	.bt_title{
+        margin-left: 450px;
+		color: #fff;
+		margin-top: 20px;
+        font: normal 40px/120px "microsoft YaHei";
+	}
+	.btn-group{
+		margin-left: 200px;
+	}
+
+    .row_jqqd{
+    	text-align: center;
+    	font: normal 25px/45px "microsoft YaHei";
+    }
+
+</style>
+
+</head>
+<body>
+<div class="container">
+		<div class="row_title">
+		<span class="bt_title">欢迎进入教务处系统学生端平台</span>
+</div>
+
+
+<div class="row_gnxz">
+<div class="row_btn1" style="float: left;margin-left: -395px;">
+<div class="btn-group">
+	<button type="button" class="btn btn-default dropdown-toggle btn-lg" 
+			data-toggle="dropdown">
+		个人信息 <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+		<li><a href="#">个人资料</a></li>
+
+	</ul>
+</div>
+</div>
+
+<div class="row_btn2" style="float: left;margin-left: -274px;">
+<div class="btn-group">
+	<button type="button" class="btn btn-default dropdown-toggle btn-lg" 
+			data-toggle="dropdown">
+		信息查询 <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+		<li><a href="/score_query" >成绩查询</a></li>
+	
+	</ul>
+</div>
+</div>
+
+<div class="row_btn3" style="float: left;margin-left: -200px;">
+<div class="btn-group">
+	<button type="button" class="btn btn-default dropdown-toggle btn-lg" 
+			data-toggle="dropdown">
+		信息维护 <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+		<li><a href="/change_students_password" >密码修改</a></li>
+		<li><a href="/change_data" >个人资料修改</a></li>
+		
+	</ul>
+</div>
+</div>		
+</div>	
+
+{% block content %} 
+<div class="row_zwkf" style="width: 1140px;">
+	<h4 class="row_jqqd">尽请期待，部分功能尚未完成</h4>
+	<img src="../image/26.jpg" style="margin-top: 30px;margin-left: 220px;">
+
+
+</div>
+{% endblock %}
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>教务处管理系统</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style type="text/css">
+
+
+		.row_login{
+			width: 250px;
+			margin: 77px auto;
+		}
+
+		.js_title{
+			 color: #1069a4;
+             font: normal 24px/45px "microsoft YaHei";
+		}
+
+		.title{
+			width: 240px;
+			margin: 0 auto;
+			padding-top: 40px;
+		}
+
+		.biaoti_title{
+             color: #1069a4;
+             font: normal 24px/45px "microsoft YaHei";
+		}
+
+		.row_srk{
+			border:1px solid #aaa;
+			border-radius: 3px;
+		}
+
+		.input-group{
+			margin-top: 5px;
+		}
+	</style>
+</head>
+<body>
+
+<div class="container" style="width: 930px;margin: 130px 275px auto;border: 1px solid #ccc;border-radius: 5px;box-shadow: 0px 1px 20px rgb(175,175,175);">
+	<div class="row_left">
+		<img src="{{ url_for('static', filename='image/21.jpg') }}" style="width: 563px;height: 469px;float: left;margin-left: -15px;">
+	</div>
+	<div class="row_right" style="padding-left: 550px;">
+	<div class="title">
+	<img src="{{ url_for('static', filename='image/logo_hushi1.png') }}" style="float: left;">
+		<span class="biaoti_title">欢迎使用教务系统</span>
+		<h1 class="js_title">学生登录</h1>
+
+	</div>
+	<div class="row_login">
+		<form action="/login" class="login">
+			<div class="input-group">
+			<span class="input-group-addon">账号</span>
+			<input type="text" name="id" class="form-control" placeholder="">
+		</div>
+			<div class="input-group">
+			<span class="input-group-addon">密码</span>
+			<input type="password" name="password" class="form-control" placeholder="">
+		</div>
+			
+			<div class="row_denglu1" style="margin-top: 50px;margin-bottom: 10px; ">
+				<button class="btn1" type="button" onclick="this.form.submit()" style="width: 235px;height: 25px;background-color: steelblue;border: 0;border-radius: 10px;margin-top: 20px;"><span style="color: #fff;">登录</span></button>
+			</div>
+			<div class="row_denglu2" style="margin-bottom: -50px;">
+				<button class="btn2" type="button" onclick="window.location.href='/admin_login'" style="margin-top: 10px;border-radius: 10px;border: 0;background-color: steelblue;width: 235px;height: 25px;"><span style="color: #fff;">管理员登录</span></button>
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+</body>
+</html>
