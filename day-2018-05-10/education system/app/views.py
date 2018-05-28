@@ -3,7 +3,7 @@ from flask import Flask
 from flask import render_template
 from flask import request   
 import traceback
-from flask.ext.bootstrap import Bootstrap
+
 
 from sqlalchemy.orm import sessionmaker
 
@@ -12,7 +12,7 @@ import models
 Session_class = sessionmaker(bind=models.engine)
 
 app = Flask(__name__)
-bootstrap = Bootstrap(app)
+
 
 @app.route('/')
 def login():

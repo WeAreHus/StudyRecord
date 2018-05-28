@@ -9,9 +9,9 @@ from sqlalchemy.orm import sessionmaker
 import os
 os.system("python /home/fty/flasky/app/drop_table.py")
 '''
-db_user = 'man_user'
-passwd = '674099'
-database = 'snailblog'
+db_user = 'root'
+passwd = 'xx1997'
+database = 'system'
 
 eng = "mysql+mysqldb://" + db_user + ":" + passwd + "@localhost:3306/" + database
 engine = create_engine(eng, encoding='utf-8')
