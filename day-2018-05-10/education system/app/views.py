@@ -4,7 +4,6 @@ from flask import render_template
 from flask import request   
 import traceback
 
-
 from sqlalchemy.orm import sessionmaker
 
 import models
@@ -12,7 +11,6 @@ import models
 Session_class = sessionmaker(bind=models.engine)
 
 app = Flask(__name__)
-
 
 @app.route('/')
 def login():
@@ -26,7 +24,7 @@ def admin_login():
 #添加成绩
 @app.route('/score_add')
 def score_add():
-    return render_template('SacoreAdd.html')
+    return render_template('ScoreAdd.html')
 
 #删除成绩
 @app.route('/score_delete')
