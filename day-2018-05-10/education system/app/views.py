@@ -1,4 +1,6 @@
 # -*- coding: UTF-8 -*-
+import datetime
+
 from flask import Flask
 from flask import render_template
 from flask import request   
@@ -11,6 +13,8 @@ import models
 Session_class = sessionmaker(bind=models.engine)
 
 app = Flask(__name__)
+
+log_id = 0
 
 @app.route('/')
 def login():
@@ -31,10 +35,15 @@ def score_add():
 def score_delete():
     return render_template('ScoreDelete.html')
 
-#查询成绩
+#老师查询成绩
 @app.route('/score_query')
 def score_query():
     return render_template('ScoreQuery.html')
+
+#学生查询成绩
+@app.route('/student_score_query')
+def student_score_query():
+    return render_template('StudentScoreQuery.html')
 
 #添加课程
 @app.route('/class_add')
@@ -56,6 +65,11 @@ def change_my_password():
 def change_student_password():
     return render_template('ChangeStudentPassword.html')
 
+#学生查询个人资料
+@app.route('/student_data')
+def students_data():
+    return render_template('StudentData.html')
+
 #学生更改学生密码
 @app.route('/change_students_password')
 def change_students_password():
@@ -71,23 +85,37 @@ def change_data():
 def student_data():
     return render_template('StudentData.html')
 
+#分界线
+
 #学生登录
 @app.route('/login')
 def StudentLoginRequest():
+    #获取当前时间
+    time = datetime.datetime.now().strftime('%H')
+    now_time = int(time)
+    if now_time >= 5 and now_time <11 :
+        time = "Good morning"
+    elif now_time >= 11 and now_time <18 :
+        time = "Good afternoon"
+    else:
+        time = "Good evening"
     session = Session_class()
+    global log_id
     stu_id = int(request.args.get('id'))
+    log_id = stu_id
     stu_passwd = str(request.args.get('password'))
     try:
         student = session.query(models.User).filter(models.User.power==0).filter(models.User.id==stu_id).first()
         if student.password == stu_passwd:
             posts = []
-            posts.append(student)
+            posts.append(student.name)
+            posts.append(time)
             session.close()
-            return render_template('student.html', posts=posts)
+            return render_template('student.html',posts = posts)
         else:
-            return '<h1>密码错误</h1>'
+            return render_template('login.html', error='PASSWORD ERROR')
     except:
-        return '<h1>账户名错误</h1>'
+        return render_template('login.html', error='ID ERROR')
 
 #教师登录
 @app.route('/adminlogin')
@@ -101,9 +129,9 @@ def AdminLoginRequest():
             session.close()
             return render_template('admin.html')
         else:
-            return '<h1>密码错误</h1>'
+            return render_template('AdminLogin.html', error='PASSWORD ERROR')
     except:
-        return '<h1>账户名错误</h1>'
+        return render_template('AdminLogin.html', error='ID ERROR')
 
 #学生用户注册
 @app.route('/studentregist')
@@ -124,9 +152,9 @@ def StudentRegistRequest():
                             grade = stu_grade, power = stu_power)
         session.add(student)
         session.commit()
-        return '<h3>学生注册成功</h3>'
+        return render_template('StudentRegist.html', error='REGIST SUCCESS')
     except:
-        return '<h3>学生注册失败</h3>'
+        return render_template('StudentRegist.html', error='REGIST ERROR')
 
 #学生课程录入
 @app.route('/classadd')
@@ -139,9 +167,9 @@ def ClassAddRequest():
         session.add(classes)
         session.commit()
         session.close()
-        return '<h3>新添课程成功</h3>'
+        return render_template('ClassAdd.html', error = 'New class adding success')
     else:
-        return '<h3>新添课程已存在</h3>'
+        return render_template('ClassAdd.html', error = 'The class already exists')
 
 #学生成绩录入
 @app.route('/scoreadd')
@@ -158,13 +186,13 @@ def ScoreAddRequest():
             if str(scla) == cla_name:
                 i = 1
         if i == 1 :
-            return '<h3>该学生已有此成绩</h3>'
+            return render_template('ScoreAdd.html', error = 'The student already got the score')
         else:
             student = session.query(models.User).filter(models.User.power==0).filter(models.User.id==stu_id).first()
             if student.name == stu_name:
                 cla = session.query(models.Classes).filter(models.Classes.name == cla_name).first()
                 if cla == None:
-                    return '<h3>暂无此课</h3>'
+                    return render_template('ScoreAdd.html', error = 'There is no such class')
                 else:
                     student.classes.append(cla)
                     session.commit()
@@ -172,11 +200,11 @@ def ScoreAddRequest():
                     session.add(score)
                     session.commit()
                     session.close()
-                    return '<h1>录入成功</h1>'
+                    return render_template('ScoreAdd.html', error = 'The score add success')
             else:
-                return '<h1>学号与姓名不对等</h1>'
+                return render_template('ScoreAdd.html', error = 'id or name error')
     except:
-        return '<h1>学号有误</h1>'
+        return render_template('ScoreAdd.html', error = 'ID ERROR')
 
 #学生成绩删除
 @app.route('/scoredelete')
@@ -192,17 +220,40 @@ def ScoreDeleteRquest():
         stu_obj.classes.remove(cla_obj) #从一门课中删除一个学生
         session.commit()
         session.close()
-        return '<h1>删除成功</h1>'
+        return render_template('ScoreDelete.html', error = 'DELETE SUCCESS')
     except:
-        return '<h1>删除出错</h1>'
+        return render_template('ScoreDelete.html', error = 'DELETE ERROR')
 
-#学生成绩查询
+#老师查询学生成绩
 @app.route('/scorequery')
 def ScoreQueryRquest():
     session = Session_class()
     stu_id = int(request.args.get('id'))
+    try:
+        ret=(session.query(models.Scores,models.Classes).join(models.Classes,isouter=True)
+                .filter(models.Scores.user_id==stu_id).all())
+        length = len(ret) * 2
+        i = 0
+        dict_data = {}
+        if i < length:
+            for sco in ret:
+                dict_data[i] = sco[1]                    #学生课程名称
+                i = i + 1
+                dict_data[i] = sco[0].fraction         #学生分数
+                i = i + 1
+        posts = []
+        posts.append(dict_data)
+        session.close()
+        return render_template('ScoreQuery.html', posts=posts)
+    except:
+        return render_template('ScoreQuery.html', error='ID ERROR')
+
+#学生查询自己成绩
+@app.route('/studentscorequery')
+def StudentScoreQueryRquest():
+    session = Session_class()
     ret=(session.query(models.Scores,models.Classes).join(models.Classes,isouter=True)
-            .filter(models.Scores.user_id==stu_id).all())
+            .filter(models.Scores.user_id==log_id).all())
     length = len(ret) * 2
     i = 0
     dict_data = {}
@@ -215,7 +266,7 @@ def ScoreQueryRquest():
     posts = []
     posts.append(dict_data)
     session.close()
-    return render_template('ScoreQuery.html', posts=posts)
+    return render_template('StudentScoreQuery.html', posts=posts)
 
 #修改老师密码
 @app.route('/changemypassword')
@@ -232,13 +283,13 @@ def ChangeMyPasswordRequest():
                 teacher.password = newpasswd1
                 session.commit()
                 session.close()
-                return '<h1>密码修改成功</h1>'
+                return render_template('ChangeMyPassword.html', error='Password reset complete')
             else:
-                return '<h1>两次新密码不相同</h1>'
+                return render_template('ChangeMyPassword.html', error='New passwords are not the same')
         else:
-            return '<h1>密码错误</h1>'
+            return render_template('ChangeMyPassword.html', error='Password error')
     except:
-        return '<h1>帐号不存在</h1>'
+        return render_template('ChangeMyPassword.html', error='ID ERROR')
 
 #老师修改学生密码
 @app.route('/changestudentpassword')
@@ -251,9 +302,23 @@ def ChangeStudentPasswordRequest():
         stu.password = newpasswd
         session.commit()
         session.close()
-        return '<h1>密码修改成功</h1>'
+        return render_template('ChangeStudentPassword.html', error='Password reset complete')
     except:
-        return '<h1>帐号不存在</h1>'
+        return render_template('ChangeStudentPassword.html', error='ID ERROR')
+
+#学生个人资料查询
+@app.route('/studentdata')
+def StudentDataRequest():
+    session = Session_class()
+    print log_id
+    try:
+        student = session.query(models.User).filter(models.User.power==0).filter(models.User.id==log_id).first()
+        posts = []
+        posts.append(student)
+        session.close()
+        return render_template('StudentData.html', posts=posts)
+    except:
+        return render_template('StudentData.html', error='ERROR!')
 
 #学生修改学生密码
 @app.route('/changestudentspassword')
@@ -270,34 +335,33 @@ def ChangeStudentsPasswordRequest():
                 teacher.password = newpasswd1
                 session.commit()
                 session.close()
-                return '<h1>密码修改成功</h1>'
+                return render_template('ChangeStudentsPassword.html', error='Password reset complete')
             else:
-                return '<h1>两次新密码不相同</h1>'
+                return render_template('ChangeStudentsPassword.html', error='New passwords are not the same')
         else:
-            return '<h1>密码错误</h1>'
+            return render_template('ChangeStudentsPassword.html', error='PASSWORD ERROR')
     except:
-        return '<h1>帐号不存在</h1>'
+        return render_template('ChangeStudentsPassword.html', error='ID ERROR')
 
 #学生资料更改
 @app.route('/changedata')
 def ChangeDataRequest():
     session = Session_class()
-    stu_id = int(request.args.get('id'))
     stu_birthday = int(request.args.get('birthday'))
     stu_collage = str(request.args.get('collage'))
     stu_major = str(request.args.get('major'))
     stu_grade = int(request.args.get('grade'))
     try:
-        stu_obj =session.query(models.User).filter_by(id = stu_id).first()
+        stu_obj =session.query(models.User).filter_by(id = log_id).first()
         stu_obj.birthday = stu_birthday
         stu_obj.collage = stu_collage
         stu_obj.major = stu_major
         stu_obj.grade = stu_grade
         session.commit()
         session.close()
-        return '<h3>学生信息更改成功</h3>'
+        return render_template('ChangeData.html', error='reset success')
     except:
-        return '<h3>学生信息更改失败</h3>'
+        return render_template('ChangeData.html', error='reset error')
 
 if __name__ == '__main__':
     app.run(debug=True)

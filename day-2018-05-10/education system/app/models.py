@@ -5,13 +5,14 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+
 '''
 import os
 os.system("python /home/fty/flasky/app/drop_table.py")
 '''
-db_user = 'root'
-passwd = 'xx1997'
-database = 'system'
+db_user = 'man_user'
+passwd = '674099'
+database = 'snailblog'
 
 eng = "mysql+mysqldb://" + db_user + ":" + passwd + "@localhost:3306/" + database
 engine = create_engine(eng, encoding='utf-8')
@@ -65,5 +66,6 @@ def init_db():
 
 def drop_db():
     Base.metadata.drop_all(engine)
+
 
 init_db()
