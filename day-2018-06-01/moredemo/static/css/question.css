@@ -1,0 +1,19 @@
+h3{
+    text-align: center;
+    padding-top: 10px;
+}
+
+.form{
+    width: 540px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.tinymce-group{
+    width: 536px;
+    margin:0 auto;
+}
+
+.form > div{
+    padding-top: 8px;
+}
