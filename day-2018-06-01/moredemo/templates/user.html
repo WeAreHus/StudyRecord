@@ -8,13 +8,13 @@
 
 {% block body_part %}
     <div class="avatar-infos">
-        <img class="avatar" src="{{ url_for('static',filename=user.avatar_path) }}"/>
+        <img class="avatar" src="{{ url_for('static',filename=login_user.avatar_path) }}"/>
     </div>
     <div class="basic-infos">
-        <h4>用户名：{{ user.username }}</h4>
-        <h4>创建时间：{{ user.register_time }}</h4>
-        <h4>发布问答数：{{ user.questions | length }}</h4>
-        <h4>发布评论数：{{ user.comments | length }}</h4>
+        <h4>用户名：{{ login_user.username }}</h4>
+        <h4>创建时间：{{ login_user.register_time }}</h4>
+        <h4>发布问答数：{{ login_user.questions | length }}</h4>
+        <h4>发布评论数：{{ login_user.comments | length }}</h4>
     </div>
     <div class="functions-container">
         <div class="change-passwd">

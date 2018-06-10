@@ -40,7 +40,7 @@
             </form>
           <ul class="nav navbar-nav navbar-right">
               {% if login_user %}
-                  <li><a href="{{ url_for('user_center') }}">用户：{{ login_user }}</a></li>
+                  <li><a href="{{ url_for('user_center') }}">用户：{{ login_user.username }}</a></li>
                   <li><a href="{{ url_for('logout') }}">注销</a></li>
               {% else %}
                   <li><a href="{{ url_for('login') }}">登录</a></li>
@@ -52,6 +52,8 @@
                 <li><a href="mailto:liutao25@baidu.com">联系我</a></li>
                 <li><a href="http://flask.pocoo.org" target="_blank">Flask官网</a></li>
                 <li><a href="https://www.python.org/">Python官网</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="https://github.com/WeAreHus/StudyRecord">我们的github</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="https://www.baidu.com" target="_blank">百度搜索</a></li>
                 <li role="separator" class="divider"></li>
