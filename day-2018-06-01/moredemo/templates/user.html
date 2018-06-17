@@ -23,8 +23,14 @@
             </button>
         </div><br>
         <div class="change-avatar">
-            <button type="submit" class="btn btn-primary btn-block" onclick="location='{{ url_for('avatar') }}'">修改头像
+            <button type="submit" class="btn btn-primary btn-block" onclick="location='{{ url_for('avatar') }}'">
+                修改头像
             </button>
         </div>
     </div>
+    <div class="change-avatar">
+            <button type="submit" class="btn btn-primary btn-block" onclick="location='{{ url_for('upload_part') }}'">
+                    上传文件
+            </button>
+            </div>
 {% endblock %}

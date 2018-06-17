@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+<html>
+
+<head>
+    {% block static_files %}
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/user.css') }}"/>
+    {% endblock %}
+</head>
+{% block page_name %}文件列表{% endblock %}
+
+{% block body_part %}
+<body>
+    <div class="basic-infos">
+    {% for file in files %}
+    <h4><a href="{{ url_for('file_download', filename=file) }}">{{ file }}</a></h4><br/>
+    {% endfor %}
+    </div>
+</body>
+{% endblock %}
+
+</html>

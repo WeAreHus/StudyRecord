@@ -1,9 +1,10 @@
 #coding:utf8
-from flask import Flask, render_template, request, flash, session, url_for, redirect, g
+from flask import Flask, render_template, request, flash, session, url_for, redirect, g, Response
 from models import db, Users, Questions, Comments
 from werkzeug.security import generate_password_hash
 from sqlalchemy import or_
 from os import path
+import os
 from werkzeug import secure_filename
 
 from exts import validate, validate_func, allowed_file
@@ -192,6 +193,60 @@ def avatar():
             g.user.avatar_path = 'images/uploads/' + filename
             db.session.commit()
     return render_template('avatar.html', user=g.user)
+
+# 接收上传的分片，并保存在本地
+@app.route('/file/upload', methods=['GET','POST'])
+def upload_part():                              # 接收前端上传的一个分片
+    if request.method == 'POST':
+        task = request.form.get('task_id')          # 获取文件的唯一标识符
+        chunk = request.form.get('chunk', 0)        # 获取该分片在所有分片中的序号
+        filename = '%s%s' % (task, chunk)           # 构造该分片的唯一标识符
+
+        upload_file = request.files['file']
+        upload_file.save('./upload/%s' % filename)  # 保存分片到本地
+    return render_template('upload.html')
+
+# 将所有分片内容写入新文件
+@app.route('/file/merge', methods=['GET'])
+def upload_success():                                   # 按序读出分片内容，并写入新文件
+    target_filename = request.args.get('filename')      # 获取上传文件的文件名
+    task = request.args.get('task_id')                  # 获取文件的唯一标识符
+    chunk = 0  # 分片序号
+    with open('./upload/%s' % target_filename, 'wb') as target_file:  # 创建新文件
+        while True:
+            try:
+                filename = './upload/%s%d' % (task, chunk)
+                source_file = open(filename, 'rb')      # 按序打开每个分片
+                target_file.write(source_file.read())   # 读取分片内容写入新文件
+                source_file.close()
+            except IOError:
+                break
+
+            chunk += 1
+            os.remove(filename)                         # 删除该分片，节约空间
+
+    return render_template('upload.html')
+
+# 获取器upload目录文件列表
+@app.route('/file/list', methods=['GET'])
+def file_list():
+    files = os.listdir('./upload/')  # 获取文件目录
+    files = map(lambda x: x if isinstance(x, unicode) else x.decode('utf-8'), files)  # 注意编码
+    return render_template('list.html', files=files)
+
+# 实现点击文件名下载对应文件
+@app.route('/file/download/<filename>', methods=['GET'])
+def file_download(filename):
+    def send_chunk():  # 流式读取
+        store_path = './upload/%s' % filename
+        with open(store_path, 'rb') as target_file:
+            while True:
+                chunk = target_file.read(20 * 1024 * 1024)
+                if not chunk:
+                    break
+                yield chunk
+
+    return Response(send_chunk(), content_type='application/octet-stream')
 
 if __name__ == '__main__':
     app.run()
