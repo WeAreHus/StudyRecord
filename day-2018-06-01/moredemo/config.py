@@ -2,6 +2,8 @@
 
 # 开启调试模式
 DEBUG = True
+#开启多线程
+threaded=True
 
 # 数据库信息
 HOST = "127.0.0.1"
@@ -17,5 +19,5 @@ SQLALCHEMY_DATABASE_URI = DB_URI
 # 使用flash需要的配置操作
 SECRET_KEY = "THIS-A-SECRET-KEY"
 
-# 限制上传的文件大小（1M）
-MAX_CONTENT_LENGTH = 1 * 1024 * 1024
+# 限制上传的文件大小（2G）
+MAX_CONTENT_LENGTH = 2 * 1024 * 1024 * 1024
