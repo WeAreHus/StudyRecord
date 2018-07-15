@@ -26,7 +26,7 @@ def getGrades():
 def getLoginRequest():
     db =MySQLdb.connect(
         host='localhost', port=3306,
-        user='cris', passwd='123456',
+        user='root', passwd='123456',
         db='Students', charset='utf8',
     )
     cursor = db.cursor()
@@ -51,7 +51,7 @@ def getLoginRequest():
 def getRigistRequest():
     db =MySQLdb.connect(
         host='localhost', port=3306,
-        user='cris', passwd='123456',
+        user='root', passwd='123456',
         db='Students', charset='utf8',
     ) 
     cursor = db.cursor()
@@ -79,7 +79,7 @@ def suc():
 def get_table_data(name):
     db =MySQLdb.connect(
         host='127.0.0.1', port=3306,
-        user='cris', passwd='123456',
+        user='root', passwd='123456',
         db='Students', charset='utf8',
     )
     cur=db.cursor()
