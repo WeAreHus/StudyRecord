@@ -6,7 +6,6 @@ import os
 from PIL import Image
 import pdb
 
-
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
     'Referer': 'http://jwgl1.hbnu.edu.cn/(S(nxuiogv1kq4coqvvhltax145))/default2.aspx?'
@@ -59,7 +58,8 @@ soup = BeautifulSoup(index.content,'lxml')
 value1=soup.find('input',id='__VIEWSTATE')['value']
 value2=soup.find('input',id='__EVENTVALIDATION')['value']
 
-payload['txtUserName']=raw_input("请输入您的学号:")
+id = raw_input("请输入您的学号:")
+payload['txtUserName']=id
 payload['TextBox2']=raw_input("请输入您的密码:")
 getcode()
 payload['txtSecretCode']=raw_input("请输入验证码:")
@@ -80,7 +80,7 @@ data1 = {'__VIEWSTATE': '',
          'Button1':'',
          '__EVENTVALIDATION':''
         }
-xscj_url = codeu + '/xscj_gc.aspx?xh=2016115020429&xm=%B3%C2%CD%FE&gnmkdm=N121605'
+xscj_url = codeu + '/xscj_gc.aspx?xh='+id+'&xm=%B3%C2%CD%FE&gnmkdm=N121605'
 #print xscj_url
 xscj = s.get(xscj_url,headers = headers)
 soup1 = BeautifulSoup(xscj.content,'lxml')
@@ -93,11 +93,33 @@ data1['Button1']=u"学生".encode('gb2312','replace')
 xscj_response = s.post(xscj_url,headers = headers,data = data1)
 html1 = xscj_response.content.decode('gbk')
 
-print html1
+# 根据HTML网页字符串创建BeautifulSoup
+soup = BeautifulSoup(
+    html1,                  #HTML文档字符串
+    'html.parser',             #HTML解析器
+)
 
+tables = soup.findAll('table')
 
+'''
+for tab in tables:
+    for tr in tab.findAll('tr'):
+        for td in tr.findAll('td'):
+            print td.getText(),
+        print
+    print
+'''
 
-
-
-
-
+filename = 'score.html'
+with open(filename,'w') as f: # 如果filename不存在会自动创建， 'w'表示写数据，写之前会清空文件中的原有数据！
+    for tab in tables:
+        f.write('<table>')
+        for tr in tab.findAll('tr'):
+            f.write('<tr>')
+            for td in tr.findAll('td'):
+                f.write('<td>')
+                f.write(td.getText().encode('utf-8'))
+                f.write('</td>')
+            f.write('</tr>')
+            f.write('\n')
+        f.write('</table>')
