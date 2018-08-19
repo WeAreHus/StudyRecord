@@ -1,0 +1,21 @@
+
+</html>
+!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}Flasky {% endblock %}
+
+{% block page_content %} #page_content 是base.html中自己定义的一个内容块
+<div class = 'page-header' >
+    <form>
+{% for post in posts %}
+<tr>
+<td>{{post.id}}</td>
+<td>{{post.name}}</td>
+<td>{{post.subject}}</td>
+<td>{{post.grade}}</td>
+</tr>
+{% endfor %}
+</form>
+ </div>
+{% endblock %}

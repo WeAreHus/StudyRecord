@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>课表查询</title>
+	<meta charset="utf-8">
+	<!--引入EasyUI核心UI文件CSS-->
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.4.5/themes/default/easyui.css">
+    <!--引入EasyUI图标文件-->
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.4.5/themes/icon.css">
+    <!--引入EasyUI的中文汉化包-->
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.4.5/locale/easyui-lang-zh_CN.js">
+    <!--//引入jQuery的核心库-->
+    <script type="text/javascript" src="jquery-easyui-1.5.4.5/jquery.min.js"></script>
+	<!--引入jQuery EasyUI的核心库-->
+    <script type="text/javascript" src="jquery-easyui-1.5.4.5/jquery.easyui.min.js"></script>
+    <style type="text/css">
+		.left{
+			width:120px;
+			float:left;
+		}
+		.left table{
+			background:#E0ECFF;
+		}
+		.left td{
+			background:#eee;
+		}
+		.right{
+			float:right;
+			width:600px;
+		}
+		.right table{
+			background:#E0ECFF;
+			width:100%;
+		}
+		.right td{
+			background:#fafafa;
+			text-align:center;
+			padding:2px;
+		}
+		.right td{
+			background:#E0ECFF;
+		}
+		.right td.drop{
+			background:#fafafa;
+			width:100px;
+		}
+		.right td.over{
+			background:#FBEC88;
+		}
+		.item{
+			text-align:center;
+			border:1px solid #499B33;
+			background:#fafafa;
+			width:100px;
+		}
+		.assigned{
+			border:1px solid #BC2A4D;
+		}
+		
+	</style>
+	<script>
+		$(function(){
+			$('.left .item').draggable({
+				revert:true,
+				proxy:'clone'
+			});
+			$('.right td.drop').droppable({
+				onDragEnter:function(){
+					$(this).addClass('over');
+				},
+				onDragLeave:function(){
+					$(this).removeClass('over');
+				},
+				onDrop:function(e,source){
+					$(this).removeClass('over');
+					if ($(source).hasClass('assigned')){
+						$(this).append(source);
+					} else {
+						var c = $(source).clone().addClass('assigned');
+						$(this).empty().append(c);
+						c.draggable({
+							revert:true
+						});
+					}
+				}
+			});
+		});
+	</script>
+
+</head>
+<body>
+<div style="width:750px;">
+	<div class="left">
+		<table>
+			<tr>
+				<td><div class="item">大学英语</div></td>
+			</tr>
+			<tr>
+				<td><div class="item">计算机网络</div></td>
+			</tr>
+			<tr>
+				<td><div class="item">计算机操作系统</div></td>
+			</tr>
+			<tr>
+				<td><div class="item">大学体育</div></td>
+			</tr>
+			<tr>
+				<td><div class="item">软件体系结构</div></td>
+			</tr>
+			<tr>
+				<td><div class="item">数据库系统</div></td>
+			</tr>
+			<tr>
+				<td><div class="item">统一建模语言UML</div></td>
+			</tr>
+			<tr>
+				<td><div class="item">实验课</div></td>
+			</tr>
+		</table>
+	</div>
+	<div class="right">
+		<table>
+			<tr>
+				<td class="blank"></td>
+				<td class="title">星期一</td>
+				<td class="title">星期二</td>
+				<td class="title">星期三</td>
+				<td class="title">星期四</td>
+				<td class="title">星期五</td>
+			</tr>
+			<tr>
+				<td class="time">第一节</td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+			</tr>
+			<tr>
+				<td class="time">第二节</td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+			</tr>
+			<tr>
+				<td class="time">第三节</td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+			</tr>
+			<tr>
+				<td class="time">第四节</td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+			</tr>
+			<tr>
+				<td class="time">中午</td>
+				<td class="lunch" colspan="5">午休</td>
+			</tr>
+			<tr>
+				<td class="time">第五节</td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+			</tr>
+			<tr>
+				<td class="time">第六节</td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+			</tr>
+			<tr>
+				<td class="time">第七节</td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+			</tr>
+			<tr>
+				<td class="time">第八节</td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+				<td class="drop"></td>
+			</tr>
+		</table>
+	</div>
+</div>
+</body>
+</html>

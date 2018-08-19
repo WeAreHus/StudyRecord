@@ -1,0 +1,17 @@
+
+<head>
+<meta charset="utf-8">
+<title>成绩查询</title>
+</head>
+<body>
+<form>
+{% for post in posts %}
+<p>{{post.id}}</p>
+<p>{{post.name}}</p>
+<p>{{post.subject}}</p>
+<p>{{post.grades}}</p>
+{% endfor %}
+</form>
+</body>
+</html>
+

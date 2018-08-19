@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS训练</title>
+	<meta charset="utf-8">
+</head>
+<body>
+<!--p>javascript训练</p-->
+<script>
+	function changeImage()
+	{
+		element=document.getElementById('image')
+		if (element.src.match("bulbon")) 
+		{
+			element.src="js01.gif";
+		}
+		else
+		{
+			element.src="js02.gif";
+		}
+	}
+</script>
+<img id="image" onclick="changeImage()"
+src="js01.gif" width="200px" height="200px">
+<p>点击就会改变动图</p>
+</body>
+</html>

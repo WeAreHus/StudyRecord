@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello world!</title>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+        $("#b01").click(function(){
+        htmlobj=$.ajax({url:"123.txt",async:false});
+        $("#myDiv").html(htmlobj.responseText);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="myDiv"><h2>通过AJAX改变文本</h2></div>
+<button id="b01" type="button">获得外部内容</button>
+</body>
+</html>

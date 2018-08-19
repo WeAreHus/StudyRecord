@@ -1,0 +1,91 @@
+{% extends 'admin.html' %} 
+<!DOCTYPE html>
+<html>
+{% block content %}
+<head>
+	<title>学生成绩查询</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+
+
+		.row_login{
+			width: 250px;
+			margin: 80px auto;
+		}
+
+		.title{
+			width: 240px;
+			margin: 0 auto;
+			padding-top: 40px;
+		}
+
+		.js_title{
+			 color: #1069a4;
+             font: normal 20px/45px "microsoft YaHei";
+		}
+
+		.biaoti_title{
+             color: #1069a4;
+             font: normal 24px/45px "microsoft YaHei";
+		}
+ 
+		.row_srk{
+			width: 200px;
+			height: 25px;
+			margin-top: 5px;
+			border:1px solid #aaa;
+			border-radius: 3px;
+		}
+
+		.input-group{
+			margin-top: 5px;
+			width: 100px;
+		}
+	</style>
+</head>
+<body>
+
+<div class="container" style="width: 930px;margin: 120px 300px auto;border: 1px solid #ccc;border-radius: 5px;box-shadow: 0px 1px 20px rgb(175,175,175);">
+	<div class="row_left">
+		<img src="{{ url_for('static', filename='image/32.jpg') }}" style="width: 553px;height: 518px;float: left;margin-left:-15px;">
+	</div>
+	<div class="row_right" style="padding-left: 540px;">
+	<div class="title">
+	<img src="{{ url_for('static', filename='image/logo_hushi1.png') }}" style="float: left;">
+		<span class="biaoti_title">欢迎使用教务系统</span>
+		<h1 class="js_title">学生成绩查询</h1>
+		<h1 class="js_title">{{error}}</h1>
+	</div>
+	<div class="row_login">
+		<form action='/scorequery' method="get" class="login">
+			<div class="input-group">
+			<input class="row_srk" type="text" name="id" class="form-control" placeholder="学号" autocomplete="on">
+			</div>
+            <div>
+                {% for post in posts %}
+                <tr>
+				<h3 class="js_title">
+                课程：<td>{{post.0}}</td>
+                分数：<td>{{post.1}}</td><br>
+                课程：<td>{{post.2}}</td>
+                分数：<td>{{post.3}}</td><br>
+                课程：<td>{{post.4}}</td>
+                分数：<td>{{post.5}}</td><br>
+                课程：<td>{{post.6}}</td>
+				分数：<td>{{post.7}}</td><br>
+				</h3>
+                </tr>
+                {% endfor %}
+            </div>
+			
+			<div class="row_denglu" style="margin-bottom: 100px;margin-top: 95px; ">
+				<button class="btn1" type="button" onclick="this.form.submit()" style="width: 200px;height: 35px;background-color: steelblue;border: 0;border-radius: 15px;margin-top: 30px;"><span style="color: #fff;">提交</span></button>
+			</div>
+		</form>
+	</div>
+</div>	
+</div>
+
+</body>
+{% endblock %}
+</html>

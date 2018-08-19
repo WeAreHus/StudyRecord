@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    $(function(){
+        //按钮单击时执行
+        $("#testAjax").click(function(){
+
+              //Ajax调用处理
+            $.ajax({
+               type: "GET",
+               url: "123.txt",
+               data: "name=chen&age=20",
+               success: function(data){
+                        $("#myDiv").html('<h2>'+data+'</h2>');
+                  }
+            });
+
+         });
+    });
+</script>
+</head>
+    <body>
+        <div id="myDiv"><h2>通过 AJAX 改变文本</h2></div>
+        <button id="testAjax" type="button">Ajax改变内容</button>
+    </body>
+</html>

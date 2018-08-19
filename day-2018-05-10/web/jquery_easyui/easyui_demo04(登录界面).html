@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<div lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入EasyUI核心UI文件CSS-->
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.4.5/themes/default/easyui.css">
+    <!--引入EasyUI图标文件-->
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.4.5/themes/icon.css">
+    <!--引入EasyUI的中文汉化包-->
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.5.4.5/locale/easyui-lang-zh_CN.js">
+    <!--//引入jQuery的核心库-->
+    <script type="text/javascript" src="jquery-easyui-1.5.4.5/jquery.min.js"></script>
+	<!--引入jQuery EasyUI的核心库-->
+    <script type="text/javascript" src="jquery-easyui-1.5.4.5/jquery.easyui.min.js"></script>
+  <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="snowfall.jquery.js"></script>
+</head>
+
+<body>
+<div id="win" class="easyui-window" title="登录系统" style="width: 1020px;height: 760px;background-image: url(09.jpg)">
+    <style>
+    body {  
+            overflow: hidden;
+            background-image: url(08.jpg);
+           
+
+        </style>
+    </head>
+
+        <div class="snowfall">
+            
+        </div>
+        <script>
+            $(document).snowfall({
+          flakeCount: 200 //爱心的个数
+      });
+        </script>
+    <h1><center>教务处登录系统</center></h1>
+    <form style="padding: 50px 100px 50px 200px;">
+       <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon"></div>
+                    <input class="easyui-textbox" prompt="用户名" iconWidth="28" style="width:50%;height:34px;padding:10px;">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon"></div>
+                   <input id="pass" class="easyui-passwordbox" prompt="密   码" iconWidth="28" style="width:50%;height:34px;padding:10px">
+        </div>
+        
+
+<style type="text/css">  
+.code{  
+background-image:url(111.jpg);  
+font-family:Arial,宋体;  
+font-style:italic;  
+color:green;  
+border:0;  
+padding:2px 3px;  
+letter-spacing:3px;  
+font-weight:bolder;  
+}  
+.unchanged {  
+border:0;  
+}  
+</style>  
+
+<script language="javascript" type="text/javascript">  
+var code ; //在全局 定义验证码  
+function createCode(){   
+code = new Array();  
+var codeLength = 4;//验证码的长度  
+var checkCode = document.getElementById("checkCode");  
+checkCode.value = "";  
+  
+var selectChar = new Array(2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','J','K','L','M','N','P','Q','R','S','T','U','V','W','X','Y','Z');  
+  
+for(var i=0;i<codeLength;i++) {  
+   var charIndex = Math.floor(Math.random()*32);  
+   code +=selectChar[charIndex];  
+}  
+if(code.length != codeLength){  
+   createCode();  
+}  
+checkCode.value = code;  
+}  
+
+  
+function validate () {  
+var inputCode = document.getElementById("input1").value.toUpperCase();  
+  
+if(inputCode.length <=0) {  
+   alert("请输入验证码！");  
+   return false;  
+}  
+else if(inputCode != code ){  
+   alert("验证码输入错误！");  
+   createCode();  
+   return false;  
+}  
+else {  
+   alert("成功！");  
+   return true;  
+}  
+}  
+</script>  
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"></head>  
+<body onLoad="createCode();">  
+  
+<input type="text" id="input1" class="easyui-textbox"  prompt="验证码" iconWidth="28" style="width:50%;height:34px;padding:10px;"/>  
+<input type="button" id="checkCode" class="code" style="width:60px" onClick="createCode()" /> <a href="#" onClick="createCode()">看不清楚</a>  
+<div class="row" text-align="center">
+					<p>
+						<input type="radio"
+							style="padding: 0px; border-right: 0px; border-left: 0px; border-top: 0px; border-bottom: 0px;"
+							name="type" value="xs" id="RadioGroup1_1" checked="checked" />学生
+						&nbsp;&nbsp;&nbsp;<input name="type"
+							style="padding: 0px; border-right: 0px; border-left: 0px; border-top: 0px; border-bottom: 0px;"
+							type="radio" id="RadioGroup1_0" value="gly" />管理员
+					</p>
+				</div>
+<!--input id="Button1" onClick="validate();" type="button" value="确定" /-->  
+
+        <div style="padding: 5px;text-align: center;">
+                <a href="easyui_demo05(成绩查询框).html" type="button" class="easyui-linkbutton" icon="icon-ok" onClick="validate();" >登 录</a>
+            <a href="easyui_demo07(注册界面).html" class="easyui-linkbutton" icon="icon-man">注册</a>
+            <a href="easyui_demo06(成绩查询框2).html" id="mm" name="忘记密码">忘记密码？</a>
+        </div>
+        <div class="sl_log_ewm hidden-xs"><p><img src="04.gif" alt="二维码" style="float: right;width: 80px;height: 80px; margin-top:-180px;margin-right:130px" />
+        </div>
+        <div align="right" style="margin-right: -50px; margin-top: -80px">
+        <p><strong>用手机扫一扫，安全便捷登录</strong></p>
+        </div>
+      	      
+<a href="http://www.jwc.hbnu.edu.cn/news/152263739986816018.html"><img src="16.jpg" style="width: 300px;height: 200px;margin-top:80px;margin-left: -170px;" ></a>
+<a href="http://www.jwc.hbnu.edu.cn/news/152266569988132217.html"><img src="17.jpg" style="width: 300px;height: 200px;margin-top:100px;margin-left: 5px;" ></a>
+<div>
+<a href="http://www.jwc.hbnu.edu.cn/news/150754603431646996.html"><img src="18.jpg" style="width: 300px;height: 200px;margin-top:-280px;margin-left: 450px;" ></a>
+</div>
+
+
+    </form>
+    
+<div  class="contant-footer" style="text-align: center; position: fixed;bottom: 0">
+	<p>地址：湖北省黄石市黄石港区磁湖路11号 &nbsp;&nbsp;邮编：435002 &nbsp;&nbsp;电话：0714-6572179</p>
+</div>
+
+
+</body>
+<html>
+

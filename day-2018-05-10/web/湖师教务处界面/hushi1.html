@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>湖师教务处登录</title>
+	<meta charset="utf-8">
+
+<style type="text/css">
+
+@media only screen and (max-width: 1199px) and (min-width: 768px){
+    	.container{
+    		width: 1190px;
+    	
+    	margin:0 auto;
+    	!important;
+    	}
+    }
+ .container{
+ 	margin:0 auto;
+ 	width: 1028px;
+ }
+.container .title{
+	color: #1069a4;
+	font: normal 24px/45px "microsoft YaHei";
+	margin: 25px 0px 45px;
+
+}
+
+.container .row_button1{
+	/*float: right;
+	margin-top: -450px;
+	margin-right:670px; */
+}
+
+.row_login{
+    border:4px solid #ededed;
+    border-radius: 4px;
+    margin: 0px;
+    background: #f5f5f5;
+    margin-right: -10px;
+    margin-left: -10px;
+    display: table;
+    content: " ";
+    clear: both;
+    margin-top: 30px;
+
+
+}
+
+.row_image{
+	padding-left: 10px;
+	padding-right: 10px;
+	padding: 0px;
+    position: relative;
+    min-height: 1px;
+    width: 66.7%;
+    float: left;
+}
+
+.row_button{
+	width: 31.8%;
+}
+
+.row_denglu{
+	background-color: rgba(255,255,255,.7);
+
+    
+	float: left;
+	position: relative;
+	margin: 0 10px;
+
+	width: 310px;
+	height: 250px;
+	overflow: hidden;
+	/*padding-left: -15px;*/
+	
+   
+}
+
+.form-control{
+	
+	width: 200px;
+	border:1px solid #aaa;
+	border-radius: 0px 4px 4px 0px;
+}
+
+.form-group .input-group-addon{
+	width: 1%;
+    
+    
+	border-radius: 4px;
+	border-right: 0;
+	background: #fff;
+	}
+
+.form-group .btn{
+	width: 100px;
+	background-color: steelblue;
+	padding: 5px 10px;
+	border:0;
+	border-radius: 4px;
+	
+}
+.row_2weima{
+	position: relative;
+	
+	float: left;
+	padding: 20px;
+}
+.footer{
+	text-align: center;
+	color: #8099af;
+	font: normal 12px/20px microsoft YaHei;
+	margin: 15px;
+}
+
+.input-group{
+	padding-left: 20px;
+	height: 36px;
+}
+
+.button-image{
+
+}
+</style>
+
+</head>
+<body style="background: #fafafa">
+	<input type = "hidden" name = "yzcskz" id = "yzcskz" value = 3>
+    <input type = "hidden" name = "mmsfjm" id = "mmsfjm" value = 1>
+
+<div class="container">
+	<div class="title">
+		<div class="logo">
+		<img src="../image/logo_hushi1.png" style="margin-top: 3px;padding-right: 5px;float: left;overflow: hidden;"><span id="pt">教学综合信息服务平台</span>
+		</div>
+        <div class="hidden" style="padding-left: 10px;padding-right: 10px;width: 30%;float: left;">
+        </div>
+	</div>
+	<div class="row_login">
+		<div class="row_image" style="float: left;">
+			<img src="../image/01.jpg" style="width: 100%;">
+		</div>
+		<div class="row_button" style="float: right;">
+			<div class="row_denglu">
+			<form action="hushi2.html" method="post" class="form-horizontal">
+				<div class="row">
+					<h4 class="row_button1" style="">用户登录</h4>
+					<input type="text" style="display: none;" autocomplete="off"/>
+					<input type="password" style="display: none;" autocomplete="off"/>
+				</div>
+				<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon"></div>
+							<label for="yhm"><img src="../image/02.png" width="16" height="16" /></label>
+							<input type="text" class="form-control" name="yhm" id="yhm" value="" placeholder="用户名" autocomplete="on" style="height: 26px;width: 235px;padding-left: 10px;margin-left: 5px;box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);">
+						</div>
+					</div>
+				<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon"></div>
+							<label for="mm"><img src="../image/03.png" width="16" height="16" /></label>
+							<input type="password" name="mm" id="hidMm" style="display:none" autocomplete="off">
+							<input type="password" class="form-control" name="mm" id="mm" value="" placeholder="密码" autocomplete="on" style="height: 26px;width: 235px;padding-left: 10px;margin-left: 5px;box-shadow: inset 0 1px 1px rgba(0,0,0,0.1); ">
+						</div>
+					</div>
+					<div class="form-group">
+						<a href="" id="wjmm" class="WJMM" target="_blank" style="float: right;text-decoration: none;color: steelblue;margin: 30px 0 10px 0; font-size: 14px;">忘记密码了？</a>
+					</div>
+					<div class="form-group">
+						<div class="DL">
+							<button class="btn" type="button" onclick="this.form.submit()" id="dl" style="color: #fff; width: 290px;margin-left: 10px;">登录</button>
+						</div>
+					</div>
+
+			</form>
+		</div>
+		<div class="row_2weima">
+			<img src="../image/04.gif" width="90" height="90" style="float: left;" />&nbsp;&nbsp;<span>用手机扫一扫，<br />安全、便捷登录</span>
+		</div>	
+		</div>
+	</div>
+</div>
+<div id="footerID" class="footer">
+	<p>版权所有&copy; Copyright 1999-2017  正方软件股份有限公司　　中国·杭州西湖区紫霞街176号 互联网创新创业园2号301</p>
+</div>
+</body>
+</html>

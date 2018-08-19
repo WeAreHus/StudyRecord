@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta  charset=UTF-8">
+<title>湖北师范大学教务管理系统</title>
+<link rel="stylesheet"
+	href="../static/new_style.css" />
+ <script type="text/javascript" src="../jquery_easyui/jquery-easyui-1.5.4.5/jquery.min.js"></script>
+
+</head>
+<body onload="updateValidateCode(75,26)">
+	<div class="wrap_1200 zk-style">
+	    
+		<div class="logo">
+			<img src="../image/hushi.jpg" />
+		</div>
+		<div class="login-wrap">
+			<div class="title"></div>
+			<form class="form" id="loginForm" name="loginForm" method="post"
+				action="../image/demo01.html">
+				<input type="hidden" name="systemId" value="" /> 
+				<input type="hidden" name="xmlmsg" value="" />
+
+				
+					<div class="row">
+						<i></i> <input type="hidden" />
+						<div></div>
+					</div>
+				
+
+				<div class="row">
+					<label>用&nbsp;&nbsp;&nbsp;户：</label> <!-- <i class="fa fa-user"> </i> --><input name="userName" type="text" class="login_input"
+						id="textfield" value="" />
+				</div>
+				<div class="row">
+					<label>密&nbsp;&nbsp;&nbsp;码：</label>
+					<!-- <i class="fa fa-mm"> </i> -->
+					<input name="password" type="password" class="login_input"
+						id="textfield2" />
+				</div>
+
+				
+
+
+				<div class="row">
+					<p>
+						<input type="radio"
+							style="padding: 0px; border-right: 0px; border-left: 0px; border-top: 0px; border-bottom: 0px;"
+							name="type" value="xs" id="RadioGroup1_1" checked="checked" />学生
+						&nbsp;&nbsp;&nbsp;<input name="type"
+							style="padding: 0px; border-right: 0px; border-left: 0px; border-top: 0px; border-bottom: 0px;"
+							type="radio" id="RadioGroup1_0" value="js" />教师
+						&nbsp;&nbsp;&nbsp;<input type="radio"
+							style="padding: 0px; border-right: 0px; border-left: 0px; border-top: 0px; border-bottom: 0px;"
+							name="type" value="jwglry" id="RadioGroup1_2" />其他用户
+					</p>
+				</div>
+				<div class="ro">
+					<button type="button" onclick="this.form.submit();">
+						<span>登录</span>
+					</button>
+				</div>
+				<div class="row clear">
+
+					<a style="color: #333; float: left;" href="toForgetPassword.do">
+						忘记密码</a> 
+						<a style="color: #333; float: right;" href="http://www.baidu.com" target="_blank">
+						注册用户</a>
+				</div>
+			</form>
+		</div>
+		<div class="whut-copy">地址：湖北省黄石市黄石港区磁湖路11号 &nbsp;&nbsp;邮编：435002 &nbsp;&nbsp;电话：0714-6572179</div>
+	</div>
+	
+</body>
+</html>

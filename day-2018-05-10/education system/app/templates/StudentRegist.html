@@ -1,0 +1,100 @@
+{% extends 'admin.html' %} 
+<!DOCTYPE html>
+<html>
+{% block content %}
+<head>
+	<title>教务处登录系统</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+
+
+		.row_login{
+			width: 250px;
+			margin: -10px auto;
+		}
+
+		.title{
+			width: 240px;
+			margin: 0 auto;
+			padding-top: 40px;
+		}
+
+		.js_title{
+			 color: #1069a4;
+             font: normal 20px/45px "microsoft YaHei";
+		}
+
+		.biaoti_title{
+             color: #1069a4;
+             font: normal 24px/45px "microsoft YaHei";
+		}
+
+		.row_srk{
+			width: 200px;
+			height: 25px;
+			margin-top: 5px;
+			border:1px solid #aaa;
+			border-radius: 3px;
+		}
+
+		.input-group{
+			margin-top: 5px;
+			width: 100px;
+		}
+	</style>
+</head>
+<body>
+
+<div class="container" style="width: 930px;margin: 120px 300px auto;border: 1px solid #ccc;border-radius: 5px;box-shadow: 0px 1px 20px rgb(175,175,175);">
+	<div class="row_left">
+		<img src="{{ url_for('static', filename='image/28.jpg') }}" style="width: 553px;height: 518px;float: left;margin-left: -15px;">
+	</div>
+	<div class="row_right" style="padding-left: 540px;">
+	<div class="title">
+	<img src="{{ url_for('static', filename='image/logo_hushi1.png') }}" style="float: left;">
+		<span class="biaoti_title">欢迎使用教务系统</span>
+		<h1 class="js_title">学生用户注册<span>（*必填）</span></h1>
+		<h1 class="js_title">{{error}}<span></span></h1>
+	</div>
+	<div class="row_login">
+		<form method="get" action='/studentregist' class="login">
+			<div class="input-group">
+			<input class="row_srk" type="text" class="form-control" name="id" placeholder="*学号" autocomplete="on">
+			</div>
+
+			<div class="input-group">
+			<input class="row_srk" type="text" class="form-control" name="name" placeholder="*姓名" autocomplete="on">
+		</div>
+
+			<div class="input-group">
+			<input class="row_srk" type="password" class="form-control" name="password" placeholder="*密码" autocomplete="on">
+		</div>
+
+	        <div class="input-group">
+	    	<input class="row_srk" type="text" class="form-control" name="birthday" placeholder="出生日期" autocomplete="on">
+	    </div>
+			
+            <div class="input-group">
+	    	<input class="row_srk" type="text" class="form-control" name="collage" placeholder="学院" autocomplete="on">
+	    </div>
+
+	      <div class="input-group">
+	    	<input class="row_srk" type="text" class="form-control" name="major" placeholder="专业" autocomplete="on">
+	    </div>
+
+	      <div class="input-group">
+	    	<input class="row_srk" type="text" class="form-control" name="grade" placeholder="年级" autocomplete="on">
+	    </div>
+
+
+			<div class="row_denglu" style="margin:18px -4px 30px 0px;">
+				<button class="btn1" type="button" onclick="this.form.submit()" style="width: 200px;height: 35px;background-color: steelblue;border: 0;border-radius: 15px;margin-top: 30px;"><span style="color: #fff;">完成</span></button>
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+
+</body>
+{% endblock %}
+</html>
