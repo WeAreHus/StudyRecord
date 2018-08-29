@@ -1,0 +1,80 @@
+
+{% extends 'base.html' %} {% block page_name %}成绩{% endblock %} {% block body_part5 %}
+<a href="{{ url_for('timetable') }}" class="nav-link active">
+    {% endblock %} {% block body_part1 %}
+    <form method="POST">
+        学年：
+        <select name=year class="selectpicker">
+            {% if year == '2016-2017' %}
+            <option selected="selected" value="2016-2017">2016-2017</option>
+            {% else %}
+            <option value="2016-2017">2016-2017</option>
+            {% endif %} {% if year == '2017-2018' %}
+            <option selected="selected" value="2017-2018">2017-2018</option>
+            {% else %}
+            <option value="2017-2018">2017-2018</option>
+            {% endif %}</select>
+        学期：
+        <select name=term class="selectpicker">
+            {% if term == '1' %}
+            <option selected="selected" value="1">1</option>
+            {% else %}
+            <option value="1">1</option>
+            {% endif %} {% if term == '2' %}
+            <option selected="selected" value="2">2</option>
+            {% else %}
+            <option value="2">2</option>
+            {% endif %}
+        </select>
+        <button type="submit" class="btn btn-success">查询</button>
+    </form>
+    {% endblock %} {% block body_part2 %}
+    <div align=center>{{year}}学年第{{term}}学期学生个人课表</div>
+    <div align=center><span id="Label5">学号：2016115060726</span>&ensp;
+<span id="Label6">姓名：陈威</span>&ensp;
+<span id="Label7">学院：计算机科学与技术学院</span>&ensp;
+<span id="Label8">专业：软件工程</span>&ensp;
+<span id="Label9">行政班：计科1607</span>&ensp;
+<span id="labTS" style="color:Red;"></span>&ensp;
+<span id="labTip" style="color:Red;"></span>&ensp;
+</div><table class="table table-bordered table-condensed"><tr>
+<td colspan="2" rowspan="1" style="width:2%;">时间</td><td align="center" style="width:14%;">星期一</td><td align="center" style="width:14%;">星期二</td><td align="center" style="width:14%;">星期三</td><td align="center" style="width:14%;">星期四</td><td align="center" style="width:14%;">星期五</td><td align="center" class="noprint" style="width:14%;">星期六</td><td align="center" class="noprint" style="width:14%;">星期日</td>
+</tr>
+<tr>
+<td colspan="2">早晨</td><td align="center"> </td><td align="center"> </td><td align="center"> </td><td align="center"> </td><td align="center"> </td><td align="center" class="noprint"> </td><td align="center" class="noprint"> </td>
+</tr>
+<tr>
+<td rowspan="4" style="width:1%;">上午</td><td style="width:1%;">第1节</td><td align="center" rowspan="2" style="width:7%;">高级语言程序设计<br/>周一第1,2节{第6-17周}<br/>黄海军<br/>教育大楼1J13</td><td align="center" style="width:7%;"> </td><td align="center" rowspan="2" style="width:7%;">线性代数<br/>周三第1,2节{第5-17周|单周}<br/>周海艳<br/>科教大厦9104</td><td align="center" style="width:7%;"> </td><td align="center" rowspan="2" style="width:7%;">高级语言程序设计<br/>周五第1,2节{第13-14周}<br/>黄海军<br/>教育大楼1J32<br/><br/>高级语言程序设计<br/>周五第1,2节{第6-11周}<br/>黄海军<br/>教育大楼1J32<br/><br/>高级语言程序设计<br/>周五第1,2节{第16-17周}<br/>黄海军<br/>教育大楼1J32</td><td align="center" class="noprint" style="width:7%;"> </td><td align="center" class="noprint" style="width:7%;"> </td>
+</tr>
+<tr>
+<td>第2节</td><td align="center"> </td><td align="center"> </td><td align="center" class="noprint"> </td><td align="center" class="noprint"> </td>
+</tr>
+<tr>
+<td>第3节</td><td align="center" rowspan="2">高等数学A（一）<br/>周一第3,4节{第5-18周}<br/>汪金汉<br/>教育大楼1J12</td><td align="center" rowspan="2">高等数学A（一）<br/>周二第3,4节{第5-17周|单周}<br/>汪金汉<br/>教育大楼1J13<br/><br/>线性代数<br/>周二第3,4节{第10-10周|双周}<br/>周海艳<br/>科教大厦9407</td><td align="center"> </td><td align="center"> </td><td align="center" rowspan="2">高等数学A（一）<br/>周五第3,4节{第5-18周}<br/>汪金汉<br/>教育大楼1J12</td><td align="center" class="noprint"> </td><td align="center" class="noprint"> </td>
+</tr>
+<tr>
+<td>第4节</td><td align="center"> </td><td align="center"> </td><td align="center" class="noprint"> </td><td align="center" class="noprint"> </td>
+</tr>
+<tr>
+<td rowspan="4" style="width:1%;">下午</td><td>第5节</td><td align="center"> </td><td align="center" rowspan="2">普通话训练<br/>周二第5,6节{第6-13周}<br/>车录彬<br/>科教大厦9101</td><td align="center"> </td><td align="center" rowspan="2">大学生心理健康教育<br/>周四第5,6节{第7-14周}<br/>周艳华<br/>教育大楼1J21</td><td align="center" rowspan="2">线性代数<br/>周五第5,6节{第5-9周}<br/>周海艳<br/>科教大厦9202<br/><br/>线性代数<br/>周五第5,6节{第11-18周}<br/>周海艳<br/>科教大厦9202</td><td align="center" class="noprint"> </td><td align="center" class="noprint"> </td>
+</tr>
+<tr>
+<td>第6节</td><td align="center"> </td><td align="center"> </td><td align="center" class="noprint"> </td><td align="center" class="noprint"> </td>
+</tr>
+<tr>
+<td>第7节</td><td align="center"> </td><td align="center"> </td><td align="center"> </td><td align="center"> </td><td align="center" rowspan="2">高级语言程序设计<br/>周五第7,8节{第12-12周}<br/>黄海军<br/>教育大楼1J32<br/><br/>高级语言程序设计<br/>周五第7,8节{第16-16周}<br/>黄海军<br/>教育大楼1J32</td><td align="center" class="noprint"> </td><td align="center" class="noprint"> </td>
+</tr>
+<tr>
+<td>第8节</td><td align="center"> </td><td align="center"> </td><td align="center"> </td><td align="center"> </td><td align="center" class="noprint"> </td><td align="center" class="noprint"> </td>
+</tr>
+<tr>
+<td rowspan="3" style="width:1%;">晚上</td><td>第9节</td><td align="center" rowspan="2">大学生职业生涯规划<br/>周一第9,10节{第12-17周}<br/>黄海军<br/>科教大厦9305</td><td align="center" rowspan="2">中国近代史纲要<br/>周二第9,10节{第5-17周}<br/>黄造煌<br/>科教大厦9104</td><td align="center"> </td><td align="center" rowspan="2">大学生职业生涯规划<br/>周四第9,10节{第12-16周|双周}<br/>黄海军<br/>科教大厦9305<br/><br/>文献信息检索<br/>周四第9,10,11节{第6-11周}<br/>夏炜<br/>控制楼2J11</td><td align="center" rowspan="3">高级语言程序设计<br/>周五第9,10,11节{第6-17周}<br/>黄海军<br/>教育大楼计机房1316</td><td align="center" class="noprint"> </td><td align="center" class="noprint"> </td>
+</tr>
+<tr>
+<td>第10节</td><td align="center"> </td><td align="center" class="noprint"> </td><td align="center" class="noprint"> </td>
+</tr>
+<tr>
+<td>第11节</td><td align="center"> </td><td align="center"> </td><td align="center"> </td><td align="center" class="noprint"> </td><td align="center" class="noprint"> </td>
+</tr>
+</table>
+{% endblock %}
