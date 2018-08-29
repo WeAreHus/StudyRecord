@@ -8,9 +8,9 @@ threaded=True
 # 数据库信息
 HOST = "127.0.0.1"
 PORT = "3306"
-DB = "edu"
+DB = "XXXXX"
 USER = "root"
-PASS = "674099"
+PASS = "XXXXXX"
 CHARSET = "utf8"
 # python2默认使用mysqldb,如果为python3则需要更改为pymysql
 DB_URI = "mysql+mysqldb://{}:{}@{}:{}/{}?charset={}".format(USER, PASS, HOST, PORT, DB, CHARSET)

@@ -8,7 +8,7 @@ from email.utils import formataddr
 
 def sendemail(my_user, user_name, n):
     my_sender='2505888537@qq.com'    # 发件人邮箱账号
-    my_pass = 'vzejbwfilfjvdhgb'              # 发件人邮箱授权码
+    my_pass = 'XXXXXXXXXX'              # 发件人邮箱授权码
     ret=True
     try:
         msg=MIMEText(n,'html','utf-8')
