@@ -32,7 +32,9 @@ def chart(lists):
     {% block body_part3 %}
     <a href="{{ url_for('student') }}" class="nav-link active">
     {% endblock %}
-    {% block body_part1 %}你好,{{login_user}}{% endblock %}
+    {% block body_part1 %}
+    <span class="glyphicon glyphicon-stats"></span>&ensp;你好,{{login_user}}
+    {% endblock %}
     {% block body_part2 %}
     '''
     with open('/home/fty/new-system/templates/student.html', 'w') as f1:
