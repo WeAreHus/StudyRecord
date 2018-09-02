@@ -3,9 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>HBNU Education system</title>
     <meta name="description" content="这是一个 index 页面">
@@ -63,13 +65,21 @@
                                 <input type="password" name="password" class="" id="doc-ipt-pwd-1" placeholder="输入密码">
                             </div>
                             <p>
-                                <button type="submit" class="am-btn am-btn-default">登录</button>
+                                <button type="submit" class="am-btn am-btn-default">
+                                    <span class="glyphicon glyphicon-log-in"></span>&ensp;登陆
+                                </button>
                             </p>
                         </fieldset>
                     </form>
-                {% for msg in get_flashed_messages(category_filter=['error']): %}
-                <li><div class="alert alert-danger" role="alert">账号或密码有误</div></li>
-                {% endfor %}
+                    {% for msg in get_flashed_messages(category_filter=['error']): %}
+                    <ul>
+                        <li>
+                            <div style="text-align:center" class="alert alert-danger" role="alert">
+                                <span class="glyphicon glyphicon-exclamation-sign"></span>&ensp;账号或密码有误
+                            </div>
+                        </li>
+                    </ul>
+                    {% endfor %}
             </div>
         </div>
     </div>

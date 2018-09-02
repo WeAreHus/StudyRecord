@@ -204,12 +204,16 @@ def parser_timetable(timetable):
         'html.parser',
     )
     html = '''
-{% extends 'base.html' %} {% block page_name %}成绩{% endblock %} {% block body_part5 %}
+ {% extends 'base.html' %} {% block page_name %}成绩{% endblock %} {% block body_part5 %}
 <a href="{{ url_for('timetable') }}" class="nav-link active">
-    {% endblock %} {% block body_part1 %}
+    {% endblock %}
+    {% block body_part1 %}
+    <span class="glyphicon glyphicon-calendar"></span>&ensp;要认真听课哦 ⊙0⊙
+    {% endblock %}
+    {% block body_part2 %}
     <form method="POST">
         学年：
-        <select name=year class="selectpicker">
+        <select name=year class="form-control selectpicker" style="width: 13%; height: 35px; font-size: 16px; margin-top:-32px; margin-left:50px;">
             {% if year == '2016-2017' %}
             <option selected="selected" value="2016-2017">2016-2017</option>
             {% else %}
@@ -219,22 +223,32 @@ def parser_timetable(timetable):
             {% else %}
             <option value="2017-2018">2017-2018</option>
             {% endif %}</select>
-        学期：
-        <select name=term class="selectpicker">
-            {% if term == '1' %}
-            <option selected="selected" value="1">1</option>
-            {% else %}
-            <option value="1">1</option>
-            {% endif %} {% if term == '2' %}
-            <option selected="selected" value="2">2</option>
-            {% else %}
-            <option value="2">2</option>
-            {% endif %}
-        </select>
-        <button type="submit" class="btn btn-success">查询</button>
+        </span>
+        <span>
+            <p style="margin-top:-28px; margin-left:253px;">学期:</p>
+            <select name=term class="form-control selectpicker" style="width: 10%; height: 35px; font-size: 16px; margin-top:-50px; margin-left:302px;">
+                {% if term == '1' %}
+                <option selected="selected" value="1">1</option>
+                {% else %}
+                <option value="1">1</option>
+                {% endif %} {% if term == '2' %}
+                <option selected="selected" value="2">2</option>
+                {% else %}
+                <option value="2">2</option>
+                {% endif %}
+            </select>
+            <span>
+                <button type="submit" class="btn btn-success" style="margin-top:-60px; margin-left:465px;width: 8%;height: 45px;">
+                    <span class="glyphicon glyphicon-search"></span>&ensp;查询
+                </button>
+            </span>
     </form>
-    {% endblock %} {% block body_part2 %}
-    <div align=center>{{year}}学年第{{term}}学期学生个人课表</div>
+    <table class="table table-bordered table-hover table-condensed">
+        <tr class="info">
+            <td align=center colspan="16">{{year}}学年第{{term}}学期学生个人课表</td>
+        </tr>
+        <tr class="info">
+            <td align=center colspan="16">
     '''
     
     with open('/home/fty/new-system/templates/time_table.html', 'w') as f:
@@ -242,14 +256,13 @@ def parser_timetable(timetable):
         tables = soup.find_all('table')
         td = tables[0].find_all('td')
         span = td[1].find_all('span')
-        f.write('<div align=center>')
         for sp in span:
             f.write(str(sp))
             f.write('&ensp;')
             f.write('\n')
-        f.write('</div>')
+        f.write('</td></tr>')
         tr = tables[1].find_all('tr')
-        f.write('<table class="table table-bordered table-condensed">')
+        f.write('')
         for tr in tr:
             f.write(str(tr))
             f.write('\n')

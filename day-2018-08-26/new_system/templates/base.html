@@ -1,5 +1,5 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -33,11 +33,32 @@
             </a>
         </div>
         <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right">
-
         </div>
-        <div class="tpl-left-nav-title" style="float: right;padding: 0px 15px 10px">
-            ^-^&nbsp;你好，{{ login_user }}&nbsp;&nbsp;
-            <a href="{{ url_for('logout') }}" style="color:lightskyblue">[退出]</a>
+
+        <div class="tpl-left-nav-title" style="float: right;padding: 12px 25px 0px">
+            <ul class="nav navbar-nav navbar-right">
+                <li role="presentation" class="dropdown">
+                  <a style="color:lightskyblue; text-decoration:none;" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    你好，{{ login_user }}&nbsp;&nbsp;∩ˍ∩&nbsp;
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="http://jwgl1.hbnu.edu.cn/(S(2kzu02451jvripyesc5eowff))/default2.aspx" target="_blank">湖北师范大学教务系统(旧)</a></li>
+                    <li><a href="http://jwxt.hbnu.edu.cn/jwglxt/xtgl/login_slogin.html?language=zh_CN&_t=1535900632078">湖北师范大学教务系统(新)</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="https://github.com/WeAreHus/StudyRecord">我们的github</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="https://www.baidu.com" target="_blank">百度搜索</a></li>
+                    <li><a href="https://www.google.com.hk" target="_blank">Google Search</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                        <a href="{{ url_for('logout') }}" >
+                            <span class="glyphicon glyphicon-log-out"></span>&ensp;退出
+                        </a>            
+                    </li>
+                  </ul>
+                </li>
+              </ul>
         </div>
 
 

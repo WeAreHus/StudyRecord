@@ -105,6 +105,7 @@ def score():
         if year == 'all' and term == 'all':
             stu = Student.query.filter(Student.id == id).first()
             credit = exts(stu.subject)
+            cla = stu.subject
         else:
             credit, cla = sub_query(id, year, term)
         credit.append(year)
