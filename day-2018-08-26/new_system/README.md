@@ -130,7 +130,7 @@ ORM框架：`flask-sqlalchemy`
 通过本命令安装有关依赖库：
 `pip install -r requirements.txt`
 
-使用前先修改`config.py`中的数据库信息
+使用前先修改`config.py`中的数据库信息，以及`sendmail.py`中的邮箱发送人
 
 使用`flask-script`配合`flask-migrate`进行版本库迁移，第一次使用时在命令行中使用`python manage.py db init`进行初始化，建立数据库迁移相关的文件和文件夹，之后每次需要迁移依次使用`python manage.py db migrate`和`python manage.py db upgrade`即可
 
@@ -149,11 +149,9 @@ ORM框架：`flask-sqlalchemy`
 
 ### 运行效果部分展示
 ---
-![登陆](http://a3.qpic.cn/psb?/V13uRwZ427WzZu/qO4EPt8MgdOSl3knp*AwplMtwtC7qlrRbNtZiyVO0go!/b/dDYBAAAAAAAA&ek=1&kp=1&pt=0&bo=PAe7AzwHuwMDEDU!&tl=1&vuin=2018982763&tm=1535270400&sce=60-4-3&rf=viewer_311)
-![主页](http://a2.qpic.cn/psb?/V13uRwZ427WzZu/7qpDE95.RPvGzU.BhHIyAM2vnMNP7Ga6u.6EWIq4SPo!/b/dDUBAAAAAAAA&ek=1&kp=1&pt=0&bo=PQe9Az0HvQMRECc!&tl=1&vuin=2018982763&tm=1535270400&sce=50-1-1&rf=viewer_311)
-![成绩](http://a4.qpic.cn/psb?/V13uRwZ427WzZu/m2DOMcF8LZ3cALHpX3iY*FyBRDRiDDq6QWHvnffPXck!/b/dDcBAAAAAAAA&ek=1&kp=1&pt=0&bo=PAczAzwHMwMRECc!&tl=3&vuin=2018982763&tm=1535270400&sce=60-4-3&rf=viewer_311)
-![课程](http://a3.qpic.cn/psb?/V13uRwZ427WzZu/kQjxaXIYleww0vD.K9mcIVrrBpWgS4zF.qu0pCywk9I!/b/dEIBAAAAAAAA&ek=1&kp=1&pt=0&bo=PAe7AzwHuwMRECc!&tl=1&vuin=2018982763&tm=1535270400&sce=50-1-1&rf=viewer_311)
-
-
+![登陆](http://a3.qpic.cn/psb?/V13uRwZ427WzZu/hJrCWjQVdkUoQv5K1f4uOytz9v2.xCL5dxnUujJh.fI!/b/dDYBAAAAAAAA&ek=1&kp=1&pt=0&bo=MAf4AjAH.AIDEDU!&tl=1&vuin=2018982763&tm=1535857200&sce=50-1-1&rf=viewer_311)
+![主页](http://a4.qpic.cn/psb?/V13uRwZ427WzZu/vl8wWVEKe6.07FzcwLJGH5pbYlP3xLU.MCyrKURuZ9s!/b/dDcBAAAAAAAA&ek=1&kp=1&pt=0&bo=HgfzAh4H8wIDEDU!&tl=1&vuin=2018982763&tm=1535857200&sce=60-4-3&rf=viewer_311)
+![成绩](http://a3.qpic.cn/psb?/V13uRwZ427WzZu/p3f6KdfDqGBteLoyBnsmjWi6XAHwiNAWopTiqzsMu7M!/b/dFYAAAAAAAAA&ek=1&kp=1&pt=0&bo=Dgf8Ag4H*AIDEDU!&tl=1&vuin=2018982763&tm=1535857200&sce=50-1-1&rf=viewer_311)
+![课程](http://a1.qpic.cn/psb?/V13uRwZ427WzZu/Mymr7HYjbUpPEdMZGnNtcvc4fXqMMLsORw3N0Qd1bVs!/b/dDQBAAAAAAAA&ek=1&kp=1&pt=0&bo=FQf1AhUH9QIDEDU!&tl=1&vuin=2018982763&tm=1535857200&sce=50-1-1&rf=viewer_311)
 
 
