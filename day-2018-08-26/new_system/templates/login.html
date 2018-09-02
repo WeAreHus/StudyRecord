@@ -72,11 +72,13 @@
                         </fieldset>
                     </form>
                     {% for msg in get_flashed_messages(category_filter=['error']): %}
-                    <li>
-                        <div class="alert alert-danger" role="alert">
-                            <span class="glyphicon glyphicon-exclamation-sign"></span>&ensp;账号或密码有误
-                        </div>
-                    </li>
+                    <ul>
+                        <li>
+                            <div style="text-align:center" class="alert alert-danger" role="alert">
+                                <span class="glyphicon glyphicon-exclamation-sign"></span>&ensp;账号或密码有误
+                            </div>
+                        </li>
+                    </ul>
                     {% endfor %}
             </div>
         </div>

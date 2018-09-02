@@ -244,10 +244,10 @@ def parser_timetable(timetable):
             </span>
     </form>
     <table class="table table-bordered table-hover table-condensed">
-        <tr>
+        <tr class="info">
             <td align=center colspan="16">{{year}}学年第{{term}}学期学生个人课表</td>
         </tr>
-        <tr>
+        <tr class="info">
             <td align=center colspan="16">
     '''
     
