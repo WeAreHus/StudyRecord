@@ -125,12 +125,17 @@ ORM框架：`flask-sqlalchemy`
  数据库ER图
 ![物理模型](https://camo.githubusercontent.com/f6dc506aea3b1f1ad15ceea1d53a1e29e2a90f91/687474703a2f2f61332e717069632e636e2f7073623f2f5631337552775a343237577a5a752f6c6431796f444a39566e37384f7674304342456277654266676a2a4d54716433393349744e675a386e6b6f212f622f64465942414141414141414126656b3d31266b703d312670743d3026626f3d34414d6b417541444a4149444544552126746c3d31267675696e3d3230313839383237363326746d3d31353335323737363030267363653d36302d342d332672663d7669657765725f333131)
 
+
 ### 注意事项
 ---
 通过本命令安装有关依赖库：
 `pip install -r requirements.txt`
 
-使用前先修改`config.py`中的数据库信息，以及`sendmail.py`中的邮箱发送人
+使用前需要修改的内容：
+- `config.py`中的数据库信息
+- `matplot.py`第20，21，24，40行的路径
+- `spider.py`第34，254行的路径
+- `sendmail.py`中发件人信息
 
 使用`flask-script`配合`flask-migrate`进行版本库迁移，第一次使用时在命令行中使用`python manage.py db init`进行初始化，建立数据库迁移相关的文件和文件夹，之后每次需要迁移依次使用`python manage.py db migrate`和`python manage.py db upgrade`即可
 
