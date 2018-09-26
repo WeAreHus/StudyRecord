@@ -6,6 +6,7 @@ from crypto_rsa.RSAJS import RSAKey
 from crypto_rsa.base64 import Base64 as pB64
 from crypto_rsa.safeInput import safeInput
 import sys 
+import json
 reload(sys) 
 sys.setdefaultencoding( "utf-8")
 
@@ -66,35 +67,35 @@ def main(yhm,passwd):
 
 
     response = s.post(base_url,data=data1,headers =headers)
- 
-    html1 = str(response.content.decode('utf-8'))
+    html1 = response.content.decode('utf-8')
     #print(html1)
-    cook =  response.request.headers['Cookie']
-    #print(cook)
-    with open('/home/cris/New-education-system/client/inedx.html','wb') as f:
-        f.write(html1)
-    print("已获取成功!")
-    getgrades(yhm)
+     
+    print("欢迎进入教务成绩系统!")
+    select = raw_input("请选择功能选项:(1.查成绩,2.查课表)")
+    if select=="1":
+        getgrades(yhm)
+    elif select=="2":
+        table()
+    else:
+        print("选择错误!")
 
 def getgrades(yhm):
+    #print(cook)
     #s = requests.session()
     #ctime = int(time.time() * 1000)
-    """headers1 = {
-    'Accept':'application/json, text/javascript, */*; q=0.01',
-    'Accept-Encoding': 'gzip,deflate',
-    'Accept-Language': 'zh-CN,zh;q=0.9',
-    'Connection': 'keep-alive',
-    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-    'Host': 'jwxt.hbnu.edu.cn',
-    'Origin': 'http://jwxt.hbnu.edu.cn',
-    'Referer':'http://jwxt.hbnu.edu.cn/jwglxt/cjcx/cjcx_cxDgXscj.html?gnmkdm=N305005&layout=default&su={}'.format(yhm),
-    'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36',
-    'X-Requested-With':'XMLHttpRequest'
-    }"""
+    xnm = str(raw_input("请输入学年:"))
+    xqm = str(raw_input("请输入学期:"))
+    if xqm == "2":
+        xqm = "3"
+    elif xqm == "1":
+        xqm = "12"
+    else:
+        pass
+    
     grades_url = "http://jwxt.hbnu.edu.cn/jwglxt/cjcx/cjcx_cxDgXscj.html?doType=query&gnmkdm=N305005"
     data2 = {
-	    'xnm': '2017',
-        'xqm': '3',
+	    'xnm': xnm,
+        'xqm': xqm,
         '_search':'false',
         'nd': ntime,
         'queryModel.showCount':'15',
@@ -104,17 +105,48 @@ def getgrades(yhm):
         'time':'0'
     }
     grades = s.post(grades_url,data = data2,headers = headers)
-    #print(grades)
-    html = grades.content.decode('utf-8')
+    grades.encoding='utf8'
+    html = str(grades.text)
     print(html)
+    #html_data = str(grades.content.decode('utf-8'))
+    #print(html_data)
+    html = json.loads(html,encoding='utf8')
+    #print(type(html))
+    grade = html['items']
+    print(grade)
+    i = 1
+    for  key in html['items']:
+        print i,key['kcmc'],key['bfzcj'],key['xf'],key['jd']
+        i = i + 1
 
-    #with open('/home/cris/New-education-system/client/grades.json','wb') as f1:
-    #    f1.write(html)
-    #print("成绩保存成功!")
-
-
+def table():
+    xnm = str(raw_input("请输入学年:"))
+    xqm = str(raw_input("请输入学期:"))
+    if xqm == "1":
+        xqm = "3"
+    elif xqm == "2":
+        xqm = "12"
+    else:
+        pass
+    table_url = "http://jwxt.hbnu.edu.cn/jwglxt/kbcx/xskbcx_cxXsKb.html?gnmkdm=N2151"
+    data3 = {
+        'xnm': xnm,
+        'xqm': xqm
+    }
+    tables = s.post(table_url,data = data3,headers = headers) 
+    html2 = tables.content.decode('utf-8')
+    with open('/home/cris/New-education-system/client/table.json','wb') as f:
+        f.write(html2)
+    #print(html2)
+    html2 = json.loads(html2,encoding='utf8')
+    i = 1
+    for  key in html2['kbList']:
+        print i,key['kcmc'],key['xqjmc'],key['jc'],key['zcd'],key['cdmc'],key['xm'],key['xqmc']
+        i = i + 1
+    
+    
 if __name__=="__main__":
-    yhm = raw_input("请输入学号号：")
+    yhm = raw_input("请输入学号：")
     passwd = safeInput().getpass("请输入密码：")
     main(yhm,passwd)
 
