@@ -23,7 +23,7 @@ ipaddress==1.0.17
 isort==4.3.4
 itchat==1.3.10
 itsdangerous==0.24
-Jinja2==2.10
+Jinja2==2.11.3
 jupyter-echarts-pypkg==0.1.2
 keyring==10.6.0
 keyrings.alt==3.0
