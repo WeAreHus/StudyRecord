@@ -45,7 +45,7 @@ py==1.4.31
 pyasn1==0.1.9
 pycurl==7.43.0
 pyflakes==1.1.0
-Pygments==2.1
+Pygments==2.7.4
 pyinotify==0.9.6
 pyliblzma==0.5.3
 pylint==1.5.2
